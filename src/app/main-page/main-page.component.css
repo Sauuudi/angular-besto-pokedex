@@ -1,0 +1,31 @@
+body{
+  background-color: #20233d;
+  
+}
+
+thead{
+  font-size: 18px;
+
+}
+
+table {
+  margin: 0 auto;
+  background-color: #6970ad;
+  text-transform: uppercase;
+  border-collapse: separate;
+  text-indent: initial;
+  border-spacing: 2px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  
+}
+table th, td {
+  border: 1px solid white;
+    border-collapse: collapse;
+    align-items: center;
+  }
+
+
+
+

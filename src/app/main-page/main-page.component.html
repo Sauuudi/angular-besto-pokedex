@@ -1,0 +1,47 @@
+<body>
+    <table class="sorteable center" cellspacing=1 cellpadding=1 align="center">
+        <thead>
+            <tr>
+                <th width="80">ID</th>
+                <th width="80"></th>
+                <th width="80">Pokemon</th>
+                <th width="80">Tipos</th>
+                <th width="80">PS</th>
+                <th width="80">Att</th>
+                <th width="80">Def</th>
+                <th width="80">Vel</th>
+                <th width="80">AtEsp</th>
+                <th width="80">DefEsp</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let pokemon of pokemons; index as index" >
+                <th width="80"> {{pokemons[index].id}}
+                </th>
+                <th width="80"> <img src={{pokemons[index].sprites.front_default}} width="64" height="64" alt="poke_img">
+                </th>
+                <th width="80"> {{pokemons[index].name}}
+                </th>
+                <th width="80" >
+                    <img src="/assets/types-icons/{{pokemons[index].types[0].type.name}}.png" width="45" height="20" />
+                    <img *ngIf= "pokemons[index].types.length == 2"  src="/assets/types-icons/{{pokemons[index].types[1].type.name}}.png" width="45" height="20" />
+
+                </th>
+                <th width="80"> {{pokemons[index].stats[0].base_stat}}
+                </th>
+                <th width="80"> {{pokemons[index].stats[1].base_stat}}
+                </th>
+                <th width="80"> {{pokemons[index].stats[2].base_stat}}
+                </th>
+                <th width="80"> {{pokemons[index].stats[3].base_stat}}
+                </th>
+                <th width="80"> {{pokemons[index].stats[4].base_stat}}
+                </th>
+                <th width="80"> {{pokemons[index].stats[5].base_stat}}
+            </tr>
+        </tbody>
+        <tfoot></tfoot>
+
+    </table>
+</body>
