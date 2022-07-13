@@ -1,0 +1,44 @@
+* {
+  font-family: "Lato";
+  font-size: 24px;
+  color: white;
+  
+}
+.mainBox,
+.datos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: auto;
+  max-width: 100%;
+  background-color: #6970ad;
+  
+}
+.imagen, .pokeinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: auto;
+  max-width: 100%;
+}
+
+img {
+  border: 3px;
+  border-color: black;
+  border-style: solid;
+  background-color: hsl(233, 31%, 46%);
+}
+
+p {
+  text-transform: capitalize;
+}
+
+div{
+  border: 3px;
+  border-color: black;
+  border-style:dotted;
+}

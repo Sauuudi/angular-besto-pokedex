@@ -11,20 +11,49 @@ thead{
 table {
   margin: 0 auto;
   background-color: #6970ad;
-  text-transform: uppercase;
   border-collapse: separate;
   text-indent: initial;
   border-spacing: 2px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Lato', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   text-align: center;
   
 }
+
+table thead{
+  -webkit-text-stroke: 1px black;
+  background-color: #42487b;
+  
+}
+
+
 table th, td {
-  border: 1px solid white;
+    border: 1px solid white;
     border-collapse: collapse;
     align-items: center;
+    color: white;
+    
   }
+
+  .nameClickable{
+    text-decoration: underline white;   
+    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    font-size: 12px;
+  }
+
+  .nameClickable :hover{  
+    font-size: 13px;
+
+  }
+
 
 
 
