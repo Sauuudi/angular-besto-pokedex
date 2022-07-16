@@ -1,25 +1,33 @@
-.top-bar {
+.main_container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-.styleChanger {
-  background-color: rgb(235, 86, 86);
-  padding: 2%;
+
+.top_box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pika_boss{
+  height: 48px;
+    width: 48px;
+    cursor: pointer;
+}
+
+p{
   color: white;
-  font-size: 24px;
-  border: white;
-  border-style: groove;
-  border-width: 1px;
-  border-radius: 12px;
-  text-transform: uppercase;
-  cursor: pointer;
+  font-size: 16px;
 }
-.mainBox {
-  display: flex;
-  justify-content: center;
-  background-color: #222222;
-  height: 100%;
-  font-family: "Lato", sans-serif;
+
+.styleChanger {
+  background-color: transparent;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 table {
@@ -62,7 +70,6 @@ td {
 .nameClickable :hover {
   font-size: 13px;
 }
-
 
 .container {
   border: white;

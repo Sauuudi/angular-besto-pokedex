@@ -1,23 +1,31 @@
 <div class="card_container">
   <div class="card_pokemon">
-    <a>
+    <a
+      [routerLink]="'/pokemon/' + pokemon.id"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
       <header class="card_img-container">
-        <img
-          class="pokeImg"
-          src="{{ imgLink }}"
-          width="64"
-          height="64"
-          alt="poke_img"
-        />
+        <img class="pokeImg" src="{{ imgLink }}" alt="poke_img" />
       </header>
       <div class="card_info">
-        <span  class="card_number">
+        <span class="card_number">
           {{ pokemon.id }}
         </span>
         <h3 class="card_name">
           {{ pokemon.name }}
         </h3>
-        <div class="card_wrapper"></div>
+        <div class="card_wrapper">
+          <img
+            class="type-img"
+            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
+          />
+          <img
+            class="type-img"
+            *ngIf="pokemon.types.length == 2"
+            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
+          />
+        </div>
       </div>
     </a>
   </div>
