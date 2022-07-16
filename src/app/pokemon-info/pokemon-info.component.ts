@@ -27,8 +27,8 @@ export class PokemonInfoComponent implements OnInit {
     console.log('pkeid es: ' + this.pokemonId);
 
     this.imgLink =
-      'https://assets.pokemon.com/assets/cms2/img/pokedex/full/' +
-      String(this.pokemonId).padStart(3, '0') +
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+      this.pokemonId +
       '.png';
   }
 }

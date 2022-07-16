@@ -8,10 +8,13 @@ import { DataService } from '../services/data.service';
 })
 export class MainPageComponent implements OnInit {
   pokemons: any[] = [];
+  cardTable: boolean = true;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
+    this.cardTable = true;
+
     this.dataService.getPokemonsList().subscribe((response: any) => {
       response.results.sort().forEach((result) => {
         this.dataService.getPokemon(result.name).subscribe((response2: any) => {
@@ -22,5 +25,9 @@ export class MainPageComponent implements OnInit {
 
     console.log(this.pokemons);
     //this.pokemons.sort((pkm1, pkm2) => pkm1.id - pkm2.id);
+  }
+
+  changeStyle() {
+    this.cardTable = !this.cardTable;
   }
 }
