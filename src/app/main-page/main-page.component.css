@@ -5,22 +5,26 @@
   align-items: center;
 }
 
-.top_box{
+.top_box {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.pika_boss{
+.pika_boss {
   height: 48px;
-    width: 48px;
-    cursor: pointer;
+  width: 48px;
+  cursor: pointer;
 }
-
-p{
+.pika_boss {
+  height: 48px;
+  width: 48px;
+  cursor: pointer;
+}
+p {
   color: white;
-  font-size: 16px;
+  font-size: 26px;
 }
 
 .styleChanger {

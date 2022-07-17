@@ -1,8 +1,8 @@
 <div class="main_container">
   <div class="top_box">
-    <p>Click here to change style: </p>
-    <button class="styleChanger" (click)="changeStyle()">
-      <img class="pika_boss" src="assets/pikachu.png">
+    <p>Click on me to change the style: </p>
+    <button class="styleChanger" (click)="changeStyle()" (click)="rotate()">
+      <img [@rotatedState]='state' class="pika_boss" src="assets/pikachu.png"> 
     </button>
   </div>
   <div class="main_box">
