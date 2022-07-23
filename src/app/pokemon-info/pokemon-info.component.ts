@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-pokemon-info',
@@ -10,10 +11,12 @@ import { ActivatedRoute } from '@angular/router';
 export class PokemonInfoComponent implements OnInit {
   pokemon: any;
   pokemonId: any;
+  evoChain: any;
   imgLink: String = '';
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -22,12 +25,18 @@ export class PokemonInfoComponent implements OnInit {
     });
     this.dataService.getPokemon(this.pokemonId).subscribe((response: any) => {
       this.pokemon = response;
-      console.log('el pokemon se ha recuperado bien??: ' + this.pokemon);
     });
-    console.log('pkeid es: ' + this.pokemonId);
+
+    this.http
+      .get(`https://pokeapi.co/api/v2/pokemon-species/` + this.pokemonId)
+      .subscribe((response: any) => {
+        this.http.get(response.evolution_chain.url).subscribe((response2) => {
+          this.evoChain = response2;
+        });
+      });
 
     this.imgLink =
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" +
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
       this.pokemonId +
       '.png';
   }

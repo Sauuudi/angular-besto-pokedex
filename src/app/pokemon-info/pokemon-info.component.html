@@ -1,31 +1,46 @@
-<div class="main_box" >  
-    <div class="imagen_box">
-        <img src= {{imgLink}}  width="256" height="256" alt="poke_img">
-        <p>{{pokemon.name}}</p>
-    </div>
-    <div class="pokeinfo_box"> 
-        <div class = "datos_box">  
-            <div>
-                <h3>
-                    Datos Basicos
-                </h3>
-                <p>Tipo:</p>   
-                <p>Altura</p> 
-                <p>Peso</p> 
-                <p>Tipo</p>              
+<div class="main_box">
+  <div class="imagen_box">
+    <img src="{{ imgLink }}" width="256" height="256" alt="poke_img" />
+    <p>{{ pokemon.name }}</p>
+  </div>
+  <div class="pokeinfo_box">
+    <div class="datos_pokemon_box">
+      <div>
+        <h3>Datos Basicos</h3>
 
-            </div>
-            <div>
-                Stats
-            </div>
+        <div>
+          <h4>Tipo</h4>
+          <img
+            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
+            width="45"
+            height="20"
+          />
+          <img
+            *ngIf="pokemon.types.length == 2"
+            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
+            width="45"
+            height="20"
+          />
+          <h4>Altura</h4>
+          <p>{{ pokemon.height }}</p>
+          <h4>Peso</h4>
+          <p>{{ pokemon.weight }}</p>
         </div>
-        <div class= "lineaEvolutiva">
-            <div>
-                EVOLUCION
-            </div>
-        </div>
+      </div>
+      <div>
+        <h3>Stats Base</h3>
+        <p width="80">{{ pokemon.stats[0].base_stat }}</p>
+        <p width="80">{{ pokemon.stats[1].base_stat }}</p>
+        <p width="80">{{ pokemon.stats[2].base_stat }}</p>
+        <p width="80">{{ pokemon.stats[3].base_stat }}</p>
+        <p width="80">{{ pokemon.stats[4].base_stat }}</p>
+        <p width="80">{{ pokemon.stats[5].base_stat }}</p>
+      </div>
     </div>
+    <div class="lineaEvolutiva">
+      <h3>EVOLUCION</h3>
+      <div>ola
+      </div>
+    </div>
+  </div>
 </div>
-
-
-

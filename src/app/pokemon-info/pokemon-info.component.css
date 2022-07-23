@@ -20,7 +20,7 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
-.datos_box{
+.datos_pokemon_box{
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
