@@ -1,5 +1,5 @@
 # Pokedex Tabla (WORK IN PROGRESS)
 
-Pokedex en forma de tabla con todos los pokemons actuales
+Pokedex con 2 estilos con todos los pokemons actuales
 
-:warning: ahora mismo solo tiene 50 por temas de desarrollo
+:warning: ahora mismo solo se muestran 50 pokemons por eficiencia
