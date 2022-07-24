@@ -1,5 +1,4 @@
-# Pokedex Tabla (WORK IN PROGRESS)
+# BESTO POKEDEX (WORK IN PROGRESS)
 
-Pokedex con 2 estilos con todos los pokemons actuales
+Pokedex made in Angular, WORK IN PROGRESS
 
-:warning: ahora mismo solo se muestran 50 pokemons por eficiencia
