@@ -1,11 +1,12 @@
 <div class="card_container">
   <div class="card_pokemon">
     <a
-      [routerLink]="'/pokemon/' + pokemon.id"
+      [routerLink]="'pokemon/' + pokemon.id"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
     >
-      <header class="card_img-container">
+      <header class="card_img_container">
+        <img class="backImg"  src="assets/card_background.png">
         <img class="pokeImg" src="{{ imgLink }}" alt="poke_img" />
       </header>
       <div class="card_info">

@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-main-page',
@@ -12,9 +18,9 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       state('default', style({ transform: 'rotate(0 )' })),
       state('rotated', style({ transform: 'rotate(-360deg)' })),
       transition('rotated => default', animate('0.4s')),
-      transition('default => rotated', animate('0.4s'))
-    ])
-]
+      transition('default => rotated', animate('0.4s')),
+    ]),
+  ],
 })
 export class MainPageComponent implements OnInit {
   pokemons: any[] = [];
@@ -24,24 +30,34 @@ export class MainPageComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.cardTable = true;
+    this.cardTable = false;
 
     this.dataService.getPokemonsList().subscribe((response: any) => {
       response.results.sort().forEach((result) => {
         this.dataService.getPokemon(result.name).subscribe((response2: any) => {
           this.pokemons.push(response2);
+          this.ordenar();
         });
       });
     });
-
     console.log(this.pokemons);
-    //this.pokemons.sort((pkm1, pkm2) => pkm1.id - pkm2.id);
+    
   }
 
   changeStyle() {
     this.cardTable = !this.cardTable;
   }
   rotate() {
-    this.state = (this.state === 'default' ? 'rotated' : 'default');
-}
+    this.state = this.state === 'default' ? 'rotated' : 'default';
+  }
+  ordenar() {
+    this.pokemons = this.pokemons.sort((pkm1, pkm2) => {
+      if (pkm1.id > pkm2.id) {
+        return 1;
+      } else if (pkm1.id < pkm2.id) {
+        return -1;
+      }
+      return 0;
+    });
+  }
 }

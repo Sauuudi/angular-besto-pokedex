@@ -34,13 +34,19 @@ p {
   cursor: pointer;
 }
 
+.main_box {
+  width: 90%;
+  text-align: -webkit-center;
+}
+
 table {
   background-color: #6970ad;
   border-collapse: separate;
   text-indent: initial;
-  border-spacing: 2px;
-  font-size: 14px;
+  border-spacing: 3px;
+  font-size: 16px;
   text-align: center;
+  width: 70%;
 }
 
 table thead {

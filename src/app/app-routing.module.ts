@@ -10,7 +10,7 @@ const routes: Routes = [
     component: MainPageComponent,
   },
   {
-    path: 'pokemon/:id',
+    path: 'home/pokemon/:id',
     component: PokemonInfoComponent,
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

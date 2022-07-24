@@ -1,45 +1,124 @@
-<div class="main_box">
-  <div class="imagen_box">
-    <img src="{{ imgLink }}" width="256" height="256" alt="poke_img" />
-    <p>{{ pokemon.name }}</p>
-  </div>
-  <div class="pokeinfo_box">
-    <div class="datos_pokemon_box">
-      <div>
-        <h3>Datos Basicos</h3>
-
-        <div>
-          <h4>Tipo</h4>
-          <img
-            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
-            width="45"
-            height="20"
-          />
-          <img
-            *ngIf="pokemon.types.length == 2"
-            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
-            width="45"
-            height="20"
-          />
-          <h4>Altura</h4>
-          <p>{{ pokemon.height }}</p>
-          <h4>Peso</h4>
-          <p>{{ pokemon.weight }}</p>
-        </div>
-      </div>
-      <div>
-        <h3>Stats Base</h3>
-        <p width="80">{{ pokemon.stats[0].base_stat }}</p>
-        <p width="80">{{ pokemon.stats[1].base_stat }}</p>
-        <p width="80">{{ pokemon.stats[2].base_stat }}</p>
-        <p width="80">{{ pokemon.stats[3].base_stat }}</p>
-        <p width="80">{{ pokemon.stats[4].base_stat }}</p>
-        <p width="80">{{ pokemon.stats[5].base_stat }}</p>
-      </div>
+<div class="main_box column_box">
+  <div class="row_box">
+    <div class="info_row">
+      <table class="table table-borderless">
+        <tr>
+          <td></td>
+          <td><h3>INFO</h3></td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">ID</td>
+          <td>Nº{{ pokemon.id }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Heigth</td>
+          <td>{{ pokemon.height }}m</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Weight</td>
+          <td>{{ pokemon.weight }}kg</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Type</td>
+          <td>
+            <img
+              src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
+              width="60"
+              height="30"
+            />
+            <img
+              *ngIf="pokemon.types.length == 2"
+              src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
+              width="60"
+              height="30"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Abilities</td>
+          <td>
+            <span class="ability color text-uppercase">{{
+              pokemon.abilities[0].ability.name
+            }}</span>
+            <span
+              class="ability color text-uppercase"
+              *ngIf="pokemon.abilities.length == 2"
+            >
+              {{ pokemon.abilities[1].ability.name }}
+            </span>
+            <span
+              class="ability color text-uppercase"
+              *ngIf="pokemon.abilities.length == 3"
+            >
+              {{ pokemon.abilities[2].ability.name }}
+            </span>
+          </td>
+        </tr>
+      </table>
     </div>
-    <div class="lineaEvolutiva">
-      <h3>EVOLUCION</h3>
-      <div>ola
+
+    <div class="imagen_box column_box">
+      <img src="{{ imgLink}}" width="60%" alt="poke_img" />
+      <span class="text-uppercase">{{ pokemon.name }}</span>
+    </div>
+    <div class="info_row">
+      <table class="table table-borderless">
+        <tr>
+          <td></td>
+          <td><h3>Stats Base</h3></td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">HP</td>
+          <td>{{ pokemon.stats[0].base_stat }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Attack</td>
+          <td>{{ pokemon.stats[1].base_stat }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Defense</td>
+          <td>{{ pokemon.stats[2].base_stat }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Special Attack</td>
+          <td>{{ pokemon.stats[3].base_stat }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Special Defense</td>
+          <td>{{ pokemon.stats[4].base_stat }}</td>
+        </tr>
+        <tr>
+          <td class="text-right font-weight-bold">Speed</td>
+          <td>{{ pokemon.stats[5].base_stat }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="evolution_main_box">
+    <h3>EVOLUTION CHAIN</h3>
+    <div class="evolution_images_box row_box">
+      <div class="evo_img_box column_box">
+        <img class="evo_img" src="{{ imgLink }}" />
+        <span class="text-uppercase">pokemon name1</span>
+      </div>
+      <div class="flecha_box">
+        <!-- aqui condiciones usar variable en ts-->
+        <span>LVL.15</span>
+        <img class="flecha" src="assets/flecha_derecha.png" />
+      </div>
+      <div class="evo_img_box column_box">
+        <img class="evo_img" src="{{ imgLink }}" />
+        <span class="text-uppercase">pokemon name1</span>
+      </div>
+      <div class="flecha_box">
+        <!-- aqui condiciones usar variable en ts-->
+        <span>LVL.15</span>
+        <img class="flecha" src="assets/flecha_derecha.png" />
+      </div>
+      <div class="evo_img_box column_box">
+        <img class="evo_img" src="{{ imgLink }}" />
+        <span class="text-uppercase" >pokemon name1</span>
       </div>
     </div>
   </div>

@@ -1,13 +1,13 @@
 <div class="main_container">
   <div class="top_box">
-    <p>Click on me to change the style: </p>
+    <p>Click on me to change the style:</p>
     <button class="styleChanger" (click)="changeStyle()" (click)="rotate()">
-      <img [@rotatedState]='state' class="pika_boss" src="assets/pikachu.png"> 
+      <img [@rotatedState]="state" class="pika_boss" src="assets/pikachu.png" />
     </button>
   </div>
   <div class="main_box">
     <div *ngIf="cardTable">
-      <table class="sorteable center" cellspacing="1" cellpadding="1">
+      <table class="poke_table" cellspacing="1" cellpadding="1">
         <thead>
           <tr>
             <th width="80">ID</th>
@@ -17,9 +17,9 @@
             <th width="80">PS</th>
             <th width="80">Att</th>
             <th width="80">Def</th>
-            <th width="80">Vel</th>
             <th width="80">AtEsp</th>
             <th width="80">DefEsp</th>
+            <th width="80">Vel</th>
           </tr>
         </thead>
         <tbody>
@@ -31,13 +31,17 @@
                 width="64"
                 height="64"
                 alt="poke_img"
+                [routerLink]="'/home/pokemon/' + pokemons[index].id"
+                routerLinkActive="active"
+                ariaCurrentWhenActive="page"
+                style="cursor: pointer"
               />
             </th>
             <th width="80">
               <button class="nameClickable">
                 <a
                   class="nameClickable"
-                  [routerLink]="'/pokemon/' + pokemons[index].id"
+                  [routerLink]="'/home/pokemon/' + pokemons[index].id"
                   routerLinkActive="active"
                   ariaCurrentWhenActive="page"
                   >{{ pokemons[index].name }}</a

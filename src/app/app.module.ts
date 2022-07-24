@@ -19,6 +19,7 @@ import { PokeCardComponent } from './main-page/poke-card/poke-card.component';
     FooterComponent,
     PokemonInfoComponent,
     PokeCardComponent,
+    
   ],
   imports: [
     BrowserModule,
