@@ -41,7 +41,6 @@ export class MainPageComponent implements OnInit {
       });
     });
     console.log(this.pokemons);
-    
   }
 
   changeStyle() {
@@ -52,12 +51,7 @@ export class MainPageComponent implements OnInit {
   }
   ordenar() {
     this.pokemons = this.pokemons.sort((pkm1, pkm2) => {
-      if (pkm1.id > pkm2.id) {
-        return 1;
-      } else if (pkm1.id < pkm2.id) {
-        return -1;
-      }
-      return 0;
+      return pkm1.id - pkm2.id;
     });
   }
 }

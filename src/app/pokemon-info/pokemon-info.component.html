@@ -1,5 +1,5 @@
 <div class="main_box column_box">
-  <div class="row_box">
+  <div class="info_top_box row_box">
     <div class="info_row">
       <table class="table table-borderless">
         <tr>
@@ -25,6 +25,7 @@
               src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
               width="60"
               height="30"
+              style="margin-right:5px;"
             />
             <img
               *ngIf="pokemon.types.length == 2"
@@ -58,7 +59,7 @@
     </div>
 
     <div class="imagen_box column_box">
-      <img src="{{ imgLink}}" width="60%" alt="poke_img" />
+      <img src="{{ mainImageLink }}" width="60%" alt="poke_img" />
       <span class="text-uppercase">{{ pokemon.name }}</span>
     </div>
     <div class="info_row">
@@ -95,31 +96,35 @@
     </div>
   </div>
 
-  <div class="evolution_main_box">
-    <h3>EVOLUTION CHAIN</h3>
-    <div class="evolution_images_box row_box">
-      <div class="evo_img_box column_box">
-        <img class="evo_img" src="{{ imgLink }}" />
-        <span class="text-uppercase">pokemon name1</span>
-      </div>
-      <div class="flecha_box">
-        <!-- aqui condiciones usar variable en ts-->
-        <span>LVL.15</span>
-        <img class="flecha" src="assets/flecha_derecha.png" />
-      </div>
-      <div class="evo_img_box column_box">
-        <img class="evo_img" src="{{ imgLink }}" />
-        <span class="text-uppercase">pokemon name1</span>
-      </div>
-      <div class="flecha_box">
-        <!-- aqui condiciones usar variable en ts-->
-        <span>LVL.15</span>
-        <img class="flecha" src="assets/flecha_derecha.png" />
-      </div>
-      <div class="evo_img_box column_box">
-        <img class="evo_img" src="{{ imgLink }}" />
-        <span class="text-uppercase" >pokemon name1</span>
+  <div *ngIf="false; else evolution3"></div>
+
+  <ng-template #evolution3>
+    <div class="evolution_main_box">
+      <h3>EVOLUTION CHAIN</h3>
+      <div class="evolution_images_box row_box">
+        <div class="evo_img_box column_box">
+          <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
+          <span class="text-uppercase">{{evolutionChainInfo[0].species_name}}</span>
+        </div>
+        <div class="flecha_box">
+          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1].min_level}}</span>
+          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1].trigger_name}}</span>
+          <img class="flecha" src="assets/flecha_derecha.png" />
+        </div>
+        <div class="evo_img_box column_box">
+          <img class="evo_img" src="{{ evolutionImagesLinks[1] }}" />
+          <span class="text-uppercase">{{evolutionChainInfo[1].species_name}}</span>
+        </div>
+        <div class="flecha_box">
+          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2].min_level}}</span>
+          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2].trigger_name}}</span>
+          <img class="flecha" src="assets/flecha_derecha.png" />
+        </div>
+        <div class="evo_img_box column_box">
+          <img class="evo_img" src="{{ evolutionImagesLinks[2] }}" />
+          <span class="text-uppercase">{{evolutionChainInfo[2].species_name}}</span>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

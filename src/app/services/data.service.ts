@@ -9,7 +9,7 @@ export class DataService {
 
   //get pokemons
   getPokemonsList() {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=10000`);
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=300`);
   }
 
   //get more pokemon data
@@ -17,5 +17,5 @@ export class DataService {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
 
-
+  
 }
