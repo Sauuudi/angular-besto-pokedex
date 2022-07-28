@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
@@ -15,6 +15,18 @@ export class PokemonInfoComponent implements OnInit {
 
   evolutionChainInfo: any = [];
   evolutionImagesLinks: any = [];
+
+  evolutionChainExceptions_112 = ['oddish', 'poliwag', 'ralts', 'cosmog'];
+  evolutionChainExceptions_12 = [
+    'slowpoke',
+    'nincada',
+    'snorunt',
+    'clamperl',
+    'burmy',
+  ];
+  evolutionChainExceptions_122 = ['wurmple'];
+  evolutionChainExceptions_13 = ['tyrogue'];
+  evolutionChainExceptions_18 = ['eevee'];
 
   constructor(
     private dataService: DataService,
@@ -36,29 +48,14 @@ export class PokemonInfoComponent implements OnInit {
         this.http
           .get(response.evolution_chain.url)
           .subscribe((response2: any) => {
-            var evolutionData = response2.chain;
+            var chain = response2.chain;
 
-            do {
-              var evolutionDetails = evolutionData['evolution_details'][0];
+            this.getEvolutionChain(chain);
 
-              this.evolutionChainInfo.push({
-                species_name: evolutionData.species.name,
-                min_level: !evolutionDetails ? 1 : evolutionDetails.min_level,
-                trigger_name: !evolutionDetails
-                  ? null
-                  : evolutionDetails.trigger.name,
-                item: !evolutionDetails ? null : evolutionDetails.item,
-              });//aqui hacer qie saque mas de 3 pokemon en caso como gardevoir y gallade
-
-              evolutionData = evolutionData['evolves_to'][0];
-            } while (
-              !!evolutionData &&
-              evolutionData.hasOwnProperty('evolves_to') 
-            );
-             console.log(this.evolutionChainInfo);
-             
-              
             this.getImages();
+
+            console.log(this.evolutionChainInfo);
+            console.log(this.evolutionImagesLinks);
             
           });
       });
@@ -69,26 +66,153 @@ export class PokemonInfoComponent implements OnInit {
       '.png';
   }
 
+  getEvolutionChain(chain) {
+    var exceptionalChainType = '';
+
+    if (
+      this.evolutionChainExceptions_112.indexOf(chain['species']['name']) > -1
+    ) {
+      exceptionalChainType = '112';
+    } else if (
+      this.evolutionChainExceptions_12.indexOf(chain['species']['name']) > -1
+    ) {
+      exceptionalChainType = '12';
+    } else if (
+      this.evolutionChainExceptions_13.indexOf(chain['species']['name']) > -1
+    ) {
+      exceptionalChainType = '13';
+    } else if (
+      this.evolutionChainExceptions_18.indexOf(chain['species']['name']) > -1
+    ) {
+      exceptionalChainType = '18';
+    } else if (
+      this.evolutionChainExceptions_122.indexOf(chain['species']['name']) > -1
+    ) {
+      exceptionalChainType = '122';
+    }
+    var nextChain, i;
+    switch (exceptionalChainType) {
+      case '': // Normal Case
+        do {
+          this.evolutionChainInfo.push([
+            chain['species']['name'],
+            chain['is_baby'],
+            chain['evolution_details'],
+          ]);
+          chain = chain['evolves_to'][0];
+        } while (chain !== undefined);
+        break;
+      case '112':
+        nextChain = chain;
+        this.evolutionChainInfo.push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        nextChain = chain['evolves_to'][0];
+        this.evolutionChainInfo.push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        this.evolutionChainInfo[2] = [];
+        i = 0;
+        while (chain['evolves_to'][0]['evolves_to'][i] !== undefined) {
+          nextChain = chain['evolves_to'][0]['evolves_to'][i];
+          this.evolutionChainInfo[2].push([
+            nextChain['species']['name'],
+
+            nextChain['is_baby'],
+            nextChain['evolution_details'],
+          ]);
+          i++;
+        }
+        break;
+      case '12':
+      case '13':
+      case '18':
+        nextChain = chain;
+        this.evolutionChainInfo.push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        this.evolutionChainInfo[1] = [];
+        i = 0;
+        while (chain['evolves_to'][i] !== undefined) {
+          nextChain = chain['evolves_to'][i];
+          this.evolutionChainInfo[1].push([
+            nextChain['species']['name'],
+
+            nextChain['is_baby'],
+            nextChain['evolution_details'],
+          ]);
+          i++;
+        }
+        break;
+      case '122':
+        nextChain = chain;
+        this.evolutionChainInfo.push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        this.evolutionChainInfo[1] = [];
+        nextChain = chain['evolves_to'][0]; // silcoon
+        this.evolutionChainInfo[1].push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        nextChain = chain['evolves_to'][1]; // cascoon
+        this.evolutionChainInfo[1].push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        this.evolutionChainInfo[2] = [];
+        nextChain = chain['evolves_to'][0]['evolves_to'][0]; // Beautifly
+        this.evolutionChainInfo[2].push([
+          nextChain['species']['name'],
+
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+        nextChain = chain['evolves_to'][1]['evolves_to'][0]; // Dustox
+        this.evolutionChainInfo[2].push([
+          nextChain['species']['name'],
+          nextChain['is_baby'],
+          nextChain['evolution_details'],
+        ]);
+    }
+  }
+
   getImages() {
     for (var i = 0; i < this.evolutionChainInfo.length; i++) {
       this.dataService
-        .getPokemon(this.evolutionChainInfo[i].species_name)
+        .getPokemon(this.evolutionChainInfo[i][0])
         .subscribe((response: any) => {
           this.evolutionImagesLinks.push(
             'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
               response.id +
               '.png'
           );
-          this.evolutionImagesLinks = this.evolutionImagesLinks.sort((img1, img2) => {
-            
-            if (img1 > img2) {
-              return 1;
-            } else if (img1 < img2) {
-              return -1;
+          this.evolutionImagesLinks = this.evolutionImagesLinks.sort(
+            (img1, img2) => {
+              if (img1 > img2) {
+                return 1;
+              } else if (img1 < img2) {
+                return -1;
+              }
+              return 0;
             }
-            return 0;
-          });
-
+          );
         });
     }
   }

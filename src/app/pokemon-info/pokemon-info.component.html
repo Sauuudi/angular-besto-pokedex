@@ -104,25 +104,25 @@
       <div class="evolution_images_box row_box">
         <div class="evo_img_box column_box">
           <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
-          <span class="text-uppercase">{{evolutionChainInfo[0].species_name}}</span>
+          <span class="text-uppercase">{{evolutionChainInfo[0][0] }}</span>
         </div>
         <div class="flecha_box">
-          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1].min_level}}</span>
-          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1].trigger_name}}</span>
+          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1][2][0].trigger.name}}</span>
+          <span class= "text-uppercase" style="font-size: 16px" >{{evolutionChainInfo[1][2][0].min_level}}+</span>
           <img class="flecha" src="assets/flecha_derecha.png" />
         </div>
         <div class="evo_img_box column_box">
           <img class="evo_img" src="{{ evolutionImagesLinks[1] }}" />
-          <span class="text-uppercase">{{evolutionChainInfo[1].species_name}}</span>
+          <span class="text-uppercase">{{evolutionChainInfo[1][0]}}</span>
         </div>
         <div class="flecha_box">
-          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2].min_level}}</span>
-          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2].trigger_name}}</span>
+          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2][2][0].trigger.name}}</span>
+          <span class= "text-uppercase" style="font-size: 16px">{{evolutionChainInfo[2][2][0].min_level}}+</span>
           <img class="flecha" src="assets/flecha_derecha.png" />
         </div>
         <div class="evo_img_box column_box">
           <img class="evo_img" src="{{ evolutionImagesLinks[2] }}" />
-          <span class="text-uppercase">{{evolutionChainInfo[2].species_name}}</span>
+          <span class="text-uppercase">{{evolutionChainInfo[2][0]}}</span>
         </div>
       </div>
     </div>
