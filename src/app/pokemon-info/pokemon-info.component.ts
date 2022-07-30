@@ -3,6 +3,7 @@ import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { STRING_TYPE } from '@angular/compiler';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
@@ -15,6 +16,8 @@ export class PokemonInfoComponent implements OnInit {
 
   evolutionChainInfo: any = [];
   evolutionImagesLinks: any = [];
+  exceptionalChainType;
+  
 
   evolutionChainExceptions_112 = ['oddish', 'poliwag', 'ralts', 'cosmog'];
   evolutionChainExceptions_12 = [
@@ -67,31 +70,31 @@ export class PokemonInfoComponent implements OnInit {
   }
 
   getEvolutionChain(chain) {
-    var exceptionalChainType = '';
+    this.exceptionalChainType = '';
 
     if (
       this.evolutionChainExceptions_112.indexOf(chain['species']['name']) > -1
     ) {
-      exceptionalChainType = '112';
+      this.exceptionalChainType = '112';
     } else if (
       this.evolutionChainExceptions_12.indexOf(chain['species']['name']) > -1
     ) {
-      exceptionalChainType = '12';
+      this.exceptionalChainType = '12';
     } else if (
       this.evolutionChainExceptions_13.indexOf(chain['species']['name']) > -1
     ) {
-      exceptionalChainType = '13';
+      this.exceptionalChainType = '13';
     } else if (
       this.evolutionChainExceptions_18.indexOf(chain['species']['name']) > -1
     ) {
-      exceptionalChainType = '18';
+      this.exceptionalChainType = '18';
     } else if (
       this.evolutionChainExceptions_122.indexOf(chain['species']['name']) > -1
     ) {
-      exceptionalChainType = '122';
+      this.exceptionalChainType = '122';
     }
     var nextChain, i;
-    switch (exceptionalChainType) {
+    switch (this.exceptionalChainType) {
       case '': // Normal Case
         do {
           this.evolutionChainInfo.push([
@@ -195,7 +198,10 @@ export class PokemonInfoComponent implements OnInit {
 
   getImages() {
     for (var i = 0; i < this.evolutionChainInfo.length; i++) {
-      this.dataService
+      
+      if( typeof this.evolutionChainInfo[i][0] === 'string' || this.evolutionChainInfo[i][0] instanceof String){
+        
+        this.dataService
         .getPokemon(this.evolutionChainInfo[i][0])
         .subscribe((response: any) => {
           this.evolutionImagesLinks.push(
@@ -214,6 +220,36 @@ export class PokemonInfoComponent implements OnInit {
             }
           );
         });
+
+      }
+      else{
+        for (var j = 0; j < this.evolutionChainInfo[i].length; j++){
+          
+          
+          this.dataService
+          .getPokemon(this.evolutionChainInfo[i][j][0])
+          .subscribe((response: any) => {
+            this.evolutionImagesLinks.push(
+              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
+                response.id +
+                '.png'
+            );
+            this.evolutionImagesLinks = this.evolutionImagesLinks.sort(
+              (img1, img2) => {
+                if (img1 > img2) {
+                  return 1;
+                } else if (img1 < img2) {
+                  return -1;
+                }
+                return 0;
+              }
+            );
+          });
+
+
+        }
+      }
+      
     }
   }
 }
