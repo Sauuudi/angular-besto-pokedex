@@ -59,7 +59,8 @@
     </div>
 
     <div class="imagen_box column_box">
-      <img src="{{ mainImageLink }}" width="60%" alt="poke_img" />
+      <img routerLink="/home/pokemon/17" routerLinkActive="active"
+      ariaCurrentWhenActive="page" src="{{ mainImageLink }}" width="85%" alt="poke_img" />
       <span class="text-uppercase">{{ pokemon.name }}</span>
     </div>
     <div class="info_row">
@@ -99,20 +100,26 @@
   <div *ngIf="evolutionChainInfo.length > 0">
     <ng-container [ngSwitch]="exceptionalChainType">
       <!-- EVOLUTION 111 -->
+
       <ng-container *ngSwitchCase="''">
         <div class="evolution_main_box">
-          <h3>EVOLUTION CHAIN 111</h3>
+          <h3>EVOLUTION CHAIN</h3>
           <div class="evolution_images_box row_box">
             <div class="evo_img_box column_box">
               <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
               <span class="text-uppercase">{{ evolutionChainInfo[0][0] }}</span>
+              <span *ngIf="evolutionChainInfo.length == 1" style="font-size: 20px; padding-top: 5px;"> This pokemon does not evolve</span>
             </div>
-            <div class="flecha_box">
+            <div *ngIf="evolutionChainInfo.length > 1" class="flecha_box">
               <span class="text-uppercase" style="font-size: 16px">
                 {{ evolutionChainInfo[1][2][0].trigger.name }}
               </span>
-              <span class="text-uppercase" style="font-size: 16px">
-                {{ evolutionChainInfo[1][2][0].min_level }}
+              <span
+                *ngIf="evolutionChainInfo[1][2][0].min_level != null"
+                class="text-uppercase"
+                style="font-size: 16px"
+              >
+                {{ evolutionChainInfo[1][2][0].min_level }}+
               </span>
               <span
                 *ngIf="evolutionChainInfo[1][2][0].item != null"
@@ -123,16 +130,20 @@
               </span>
               <img class="flecha" src="assets/flecha_derecha.png" />
             </div>
-            <div class="evo_img_box column_box">
+            <div *ngIf="evolutionChainInfo.length > 1" class="evo_img_box column_box">
               <img class="evo_img" src="{{ evolutionImagesLinks[1] }}" />
               <span class="text-uppercase">{{ evolutionChainInfo[1][0] }}</span>
             </div>
-            <div class="flecha_box">
+            <div *ngIf="evolutionChainInfo.length > 2" class="flecha_box">
               <span class="text-uppercase" style="font-size: 16px">
                 {{ evolutionChainInfo[2][2][0].trigger.name }}
               </span>
-              <span class="text-uppercase" style="font-size: 16px">
-                {{ evolutionChainInfo[2][2][0].min_level }}
+              <span
+                *ngIf="evolutionChainInfo[2][2][0].min_level != null"
+                class="text-uppercase"
+                style="font-size: 16px"
+              >
+                {{ evolutionChainInfo[2][2][0].min_level }}+
               </span>
               <span
                 *ngIf="evolutionChainInfo[2][2][0].item != null"
@@ -143,7 +154,7 @@
               </span>
               <img class="flecha" src="assets/flecha_derecha.png" />
             </div>
-            <div class="evo_img_box column_box">
+            <div *ngIf="evolutionChainInfo.length > 2" class="evo_img_box column_box">
               <img class="evo_img" src="{{ evolutionImagesLinks[2] }}" />
               <span class="text-uppercase">{{ evolutionChainInfo[2][0] }}</span>
             </div>
@@ -151,11 +162,11 @@
         </div>
       </ng-container>
 
-      <!-- EVOLUTION 122 -->
+      <!-- EVOLUTION 112 -->
 
       <ng-container *ngSwitchCase="'112'">
         <div class="evolution_main_box">
-          <h3>EVOLUTION CHAIN 112</h3>
+          <h3>EVOLUTION CHAIN</h3>
           <div class="evolution_images_box row_box">
             <div class="evo_img_box column_box">
               <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
@@ -167,8 +178,12 @@
               <span class="text-uppercase" style="font-size: 16px">
                 {{ evolutionChainInfo[1][2][0].trigger.name }}
               </span>
-              <span class="text-uppercase" style="font-size: 16px">
-                {{ evolutionChainInfo[1][2][0].min_level }}
+              <span
+                *ngIf="evolutionChainInfo[1][2][0].min_level != null"
+                class="text-uppercase"
+                style="font-size: 16px"
+              >
+                {{ evolutionChainInfo[1][2][0].min_level }}+
               </span>
               <span
                 *ngIf="evolutionChainInfo[1][2][0].item != null"
@@ -189,8 +204,12 @@
                 <span class="text-uppercase" style="font-size: 16px">
                   {{ evolutionChainInfo[2][0][2][0].trigger.name }}</span
                 >
-                <span class="text-uppercase" style="font-size: 16px">
-                  {{ evolutionChainInfo[2][0][2][0].min_level }}
+                <span
+                  *ngIf="evolutionChainInfo[2][0][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][0][2][0].min_level }}+
                 </span>
                 <span
                   *ngIf="evolutionChainInfo[2][0][2][0].item != null"
@@ -206,8 +225,12 @@
                 <span class="text-uppercase" style="font-size: 16px">
                   {{ evolutionChainInfo[2][1][2][0].trigger.name }}</span
                 >
-                <span class="text-uppercase" style="font-size: 16px">
-                  {{ evolutionChainInfo[2][1][2][0].min_level }}
+                <span
+                  *ngIf="evolutionChainInfo[2][1][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][1][2][0].min_level }}+
                 </span>
                 <span
                   *ngIf="evolutionChainInfo[2][1][2][0].item != null"
@@ -240,9 +263,10 @@
       </ng-container>
 
       <!-- EVOLUTION 12 -->
+
       <ng-container *ngSwitchCase="'12'">
         <div class="evolution_main_box">
-          <h3>EVOLUTION CHAIN 12</h3>
+          <h3>EVOLUTION CHAIN</h3>
           <div class="evolution_images_box row_box">
             <div class="evo_img_box column_box">
               <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
@@ -251,45 +275,53 @@
               </span>
             </div>
 
-            <div class="column_box multiple_arrows_box">  
+            <div class="column_box multiple_arrows_box">
               <div class="flecha_box">
                 <span class="text-uppercase" style="font-size: 16px">
                   {{ evolutionChainInfo[1][0][2][0].trigger.name }}</span
                 >
-                <span class="text-uppercase" style="font-size: 16px">
-                  {{ evolutionChainInfo[1][0][2][0].min_level }}
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][0][2][0].min_level }}+
                 </span>
                 <span
                   *ngIf="evolutionChainInfo[1][0][2][0].item != null"
                   class="text-uppercase"
                   style="font-size: 16px"
                 >
-                  {{ evolutionChainInfo[1][0][2][0].item.name }}
+                  Holding {{ evolutionChainInfo[1][0][2][0].item.name }}
                 </span>
                 <img class="flecha" src="assets/flecha_derecha.png" />
               </div>
 
               <div class="flecha_box">
                 <span class="text-uppercase" style="font-size: 16px">
-                  {{ evolutionChainInfo[1][1][2][0].trigger.name }}</span
+                  {{ evolutionChainInfo[1][2][2][0].trigger.name }}</span
                 >
-                <span class="text-uppercase" style="font-size: 16px">
-                  {{ evolutionChainInfo[1][1][2][0].min_level }}
-                </span>
                 <span
-                  *ngIf="evolutionChainInfo[1][1][2][0].item != null"
+                  *ngIf="evolutionChainInfo[1][2][2][0].min_level != null"
                   class="text-uppercase"
                   style="font-size: 16px"
                 >
-                  {{ evolutionChainInfo[1][1][2][0].item.name }}
+                  {{ evolutionChainInfo[1][2][2][0].min_level }}+
                 </span>
                 <span
-                *ngIf="evolutionChainInfo[2][1][2][0].held_item != null"
-                class="text-uppercase"
-                style="font-size: 16px"
-              >
-                {{ evolutionChainInfo[2][1][2][0].held_item.name }}
-              </span> 
+                  *ngIf="evolutionChainInfo[1][2][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].item.name }}
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].held_item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][2][2][0].held_item.name }}
+                </span>
                 <img class="flecha" src="assets/flecha_derecha.png" />
               </div>
             </div>
@@ -314,8 +346,471 @@
       </ng-container>
 
       <!-- EVOLUTION 122 -->
+
+      <ng-container *ngSwitchCase="'122'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][0][2][0].min_level }}+
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][0][2][0].item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][2][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].min_level }}+
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].item.name }}
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].held_item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][2][2][0].held_item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[1] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[3] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}</span
+                >
+              </div>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][0][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[2][0][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][0][2][0].min_level }}+
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[2][0][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][0][2][0].item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][1][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[2][1][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][1][2][0].min_level }}+
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[2][1][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[2][1][2][0].item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[2] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[4] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][1][0] }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
       <!-- EVOLUTION 13 -->
+
+      <ng-container *ngSwitchCase="'13'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img class="evo_img" src="{{ evolutionImagesLinks[2] }}" />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][0][2][0].min_level }}+ with ATK > DEF
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][0][2][0].item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][1][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][1][2][0].min_level }}+ with ATK < DEF
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][1][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][1][2][0].item.name }}
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][1][2][0].held_item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][1][2][0].held_item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][2][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].min_level != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].min_level }}+ with ATK = DEF
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].item.name }}
+                </span>
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].held_item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  Holding {{ evolutionChainInfo[1][2][2][0].held_item.name }}
+                </span>
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[0] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[1] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}</span
+                >
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img" src="{{ evolutionImagesLinks[3] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][2][0] }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
       <!-- EVOLUTION 18, EVEE -->
+
+      <ng-container *ngSwitchCase="'18'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN </h3>
+          <div class="evolution_images_box column_box">
+            <div class="row_box eveeRow1">
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[1] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[2] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[3] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][2][0] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row_box eveeRow2">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2][0].trigger.name }}</span
+                >
+                <span
+                  *ngIf="evolutionChainInfo[1][0][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][0][2][0].item.name }}
+                </span>
+                <img
+                  class="flecha flechaUpLeft margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2][0].trigger.name }}</span
+                >
+
+                <span
+                  *ngIf="evolutionChainInfo[1][1][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][1][2][0].item.name }}
+                </span>
+
+                <img class="flecha flechaUp margin_evee" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][2][2][0].trigger.name }}</span
+                >
+
+                <span
+                  *ngIf="evolutionChainInfo[1][2][2][0].item != null"
+                  class="text-uppercase"
+                  style="font-size: 16px"
+                >
+                  {{ evolutionChainInfo[1][2][2][0].item.name }}
+                </span>
+
+                <img
+                  class="flecha flechaUpRight margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+            </div>
+
+            <div class="row_box eveeRow3 ">
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[4] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][3][0] }}
+                </span>
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][3][2][0].trigger.name }} with
+                </span>
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][3][2][0].min_happiness }} happiness
+                  at {{ evolutionChainInfo[1][3][2][0].time_of_day }}
+                </span>
+                <img
+                  class="flecha flechaLeft"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[0] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[0][0] }}
+                </span>
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][4][2][0].trigger.name }} with
+                </span>
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][4][2][0].min_happiness }} happiness
+                  at {{ evolutionChainInfo[1][4][2][0].time_of_day }}
+                </span>
+
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[5] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][4][0] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row_box eveeRow4">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][5][2][0].trigger.name }} next to Moss
+                  Rock
+                </span>
+                <span class="text-uppercase" style="font-size: 16px">
+                  or USE-ITEM LEAF-STONE</span
+                >
+
+                <img
+                  class="flecha flechaDownLeft margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][6][2][0].trigger.name }} next to Ice
+                  Rock
+                </span>
+                <span class="text-uppercase" style="font-size: 16px">
+                  or USE-ITEM ICE-STONE
+                </span>
+
+                <img
+                  class="flecha flechaDown margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][7][2][0].trigger.name }}
+                  knowing</span
+                >
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][7][2][0].known_move_type.name }}
+                   and </span
+                >
+
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][7][2][0].min_affection }}+ affection
+                </span>
+
+                <img
+                  class="flecha flechaDownRight margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+            </div>
+
+            <div class="row_box eveeRow5">
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[6] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][5][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[7] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][6][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img class="evo_img margin_evee" src="{{ evolutionImagesLinks[8] }}" />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][7][0] }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </ng-container>
   </div>
 </div>

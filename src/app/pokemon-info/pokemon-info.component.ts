@@ -2,8 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
-import { STRING_TYPE } from '@angular/compiler';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
@@ -68,6 +66,8 @@ export class PokemonInfoComponent implements OnInit {
       this.pokemonId +
       '.png';
   }
+
+  
 
   getEvolutionChain(chain) {
     this.exceptionalChainType = '';
