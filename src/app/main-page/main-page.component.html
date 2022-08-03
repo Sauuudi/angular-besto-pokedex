@@ -1,13 +1,12 @@
 <div class="main_container">
   <div class="top_box">
-    <p>Click on me to change the style:</p>
     <button class="styleChanger" (click)="changeStyle()" (click)="rotate()">
       <img [@rotatedState]="state" class="pika_boss" src="assets/pikachu.png" />
     </button>
+    <p>CLICK ON ME!!</p>
   </div>
   <div class="main_box">
-    <!-- <div *ngIf="cardTable">  -->
-      <div *ngIf="!cardTable"> 
+      <div *ngIf="cardTable"> 
       <table class="poke_table" cellspacing="1" cellpadding="1">
         <thead>
           <tr>
@@ -77,9 +76,7 @@
         <tfoot></tfoot>
       </table>
     </div>
-
-    <!-- <div class="container" *ngIf="!cardTable"> -->
-    <div class="container" *ngIf="cardTable">
+    <div class="container" *ngIf="!cardTable">
       <div class="poke-list" *ngFor="let pokemon of pokemons; index as index">
         <app-poke-card [pokemon]="pokemons[index]"> </app-poke-card>
       </div>
