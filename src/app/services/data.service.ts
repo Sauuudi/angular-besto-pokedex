@@ -9,13 +9,25 @@ export class DataService {
 
   //get pokemons
   getPokemonsList() {
-    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=300`);
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon?limit=739`);
   }
 
   //get more pokemon data
   getPokemon(name: String) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
+
+  //get pokemon species
+  getPokemonSpecies(id : any){
+    return this.http.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+  }
+
+  //get Pokemon evolution chain
+  getEvolutionChain(url : any){
+    return  this.http.get(url)
+  }
+
+  
 
   
 }

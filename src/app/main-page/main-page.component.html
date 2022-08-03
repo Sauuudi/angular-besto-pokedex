@@ -6,7 +6,8 @@
     </button>
   </div>
   <div class="main_box">
-    <div *ngIf="cardTable">
+    <!-- <div *ngIf="cardTable">  -->
+      <div *ngIf="!cardTable"> 
       <table class="poke_table" cellspacing="1" cellpadding="1">
         <thead>
           <tr>
@@ -28,8 +29,8 @@
             <th width="80">
               <img
                 src="{{ pokemons[index].sprites.front_default }}"
-                width="64"
-                height="64"
+                width="50"
+                height="40"
                 alt="poke_img"
                 [routerLink]="'/home/pokemon/' + pokemons[index].id"
                 routerLinkActive="active"
@@ -77,7 +78,8 @@
       </table>
     </div>
 
-    <div class="container" *ngIf="!cardTable">
+    <!-- <div class="container" *ngIf="!cardTable"> -->
+    <div class="container" *ngIf="cardTable">
       <div class="poke-list" *ngFor="let pokemon of pokemons; index as index">
         <app-poke-card [pokemon]="pokemons[index]"> </app-poke-card>
       </div>

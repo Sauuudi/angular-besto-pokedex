@@ -32,11 +32,12 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.cardTable = false;
 
-    this.dataService.getPokemonsList().subscribe((response: any) => {
+    var obs1 = this.dataService.getPokemonsList().subscribe((response: any) => {
       response.results.sort().forEach((result) => {
         this.dataService.getPokemon(result.name).subscribe((response2: any) => {
           this.pokemons.push(response2);
           this.ordenar();
+          obs1.unsubscribe()
         });
       });
     });
