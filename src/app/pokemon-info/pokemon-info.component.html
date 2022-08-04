@@ -60,14 +60,17 @@
 
     <div class="imagen_box column_box">
       <img
-        routerLink="/home/pokemon/17"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
+          class="back_img"
+          src="assets/card_background.png"
+          [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"
+        />
+      <img
+      class="main_image"
         src="{{ mainImageLink }}"
-        width="85%"
+        
         alt="poke_img"
       />
-      <span class="text-uppercase">{{ pokemon.name }}</span>
+      <span  class="text-uppercase main_name">{{ pokemon.name }}</span>
     </div>
     <div class="info_row">
       <table class="table table-borderless">

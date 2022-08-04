@@ -37,7 +37,6 @@ export class PokeCardComponent implements OnInit {
 
   setPokemonBackColor(filter: string): any {
     var filterr = TypeColorFilter[filter] ?? 'white';
-    console.log(filterr);
 
     const style = {
       filter: filterr,

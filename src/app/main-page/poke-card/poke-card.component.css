@@ -4,7 +4,7 @@
 }
 .card_container {
   max-width: 300px;
-  margin: 2px 2px;
+  margin: 10px 2px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 4%;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
@@ -64,9 +64,5 @@
 .type-img {
   height: 30px;
   width: 80px;
-}
-
-.grass{
-  filter: invert(80%) sepia(14%) saturate(991%) hue-rotate(291deg) brightness(99%) contrast(106%);
 }
 
