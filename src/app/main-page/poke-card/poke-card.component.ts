@@ -13,10 +13,12 @@ export class PokeCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.imgLink =
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-      this.pokemon.id +
-      '.png';
+    
+    this.imgLink = "assets/pokemon_images_compressed/" + this.pokemon.id + ".png"
+    // this.imgLink =
+    //   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
+    //   this.pokemon.id +
+    //   '.png';
   }
 
   setPokemonCardColor(color: string): any {

@@ -57,6 +57,7 @@ export class PokemonInfoComponent implements OnInit {
           });
       });
 
+    //this.mainImageLink = 'assets/pokemon_images_compressed/' + this.pokemonId+ '.png';
     this.mainImageLink =
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
       this.pokemonId +
@@ -121,7 +122,7 @@ export class PokemonInfoComponent implements OnInit {
         i = 0;
         while (chain['evolves_to'][0]['evolves_to'][i] !== undefined) {
           nextChain = chain['evolves_to'][0]['evolves_to'][i];
-          
+
           this.evolutionChainInfo[2].push([
             nextChain['species']['name'],
 
@@ -201,14 +202,13 @@ export class PokemonInfoComponent implements OnInit {
   }
 
   getImage(id: any) {
-    return (
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-      id +
-      '.png'
-    );
+    return 'assets/pokemon_images_compressed/' + id + '.png';
+    // 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
+    // id +
+    // '.png'
   }
 
-  getEvolutionDetails(data: any) : string{
+  getEvolutionDetails(data: any): string {
     var res = '';
 
     if (data[0] == null) {
@@ -237,7 +237,8 @@ export class PokemonInfoComponent implements OnInit {
               res = res + ' knowing ' + data[0]['known_move'].name;
             }
             if (data[0]['known_move_type'] !== null) {
-              res = res + ' knowing a ' + data[0]['known_move_type'].name + ' move';
+              res =
+                res + ' knowing a ' + data[0]['known_move_type'].name + ' move';
             }
             if (data[0]['min_affection'] !== null) {
               res = res + ' with ' + data[0]['min_affection'] + '+ Affection';
@@ -260,15 +261,21 @@ export class PokemonInfoComponent implements OnInit {
               res = res + ' with ATCK ' + sign + ' DEF';
             }
             if (data[0]['party_species'] !== null) {
-              res = res + ' with ' + data[0]['party_species'].name + ' in party';
+              res =
+                res + ' with ' + data[0]['party_species'].name + ' in party';
             }
             if (data[0]['party_type'] !== null) {
-              res = res + ' with a ' + data[0]['party_type'].name + ' type in party';
+              res =
+                res +
+                ' with a ' +
+                data[0]['party_type'].name +
+                ' type in party';
             }
             if (data[0]['location'] !== null) {
               var location = data[0]['location'].name;
               if (location == 'mt-coronet') {
-                res = res + ' in a Special magnetic field or Use Thunder Stone ';
+                res =
+                  res + ' in a Special magnetic field or Use Thunder Stone ';
               } else if (location == 'sinnoh-route-217') {
                 res = res + ' in Ice Rock or Use Ice Stone ';
               } else if (location == 'eterna-forest') {
@@ -287,10 +294,8 @@ export class PokemonInfoComponent implements OnInit {
           if (data[0]['turn_upside_down'] !== false) {
             res = res + ' holding 3DS upside-down';
           }
-          if(this.pokemonId == 737 && data[1] != null){
-              res = res + " in a Special Magnetic Field or Use Thunder Stone"
-            
-             
+          if (this.pokemonId == 737 && data[1] != null) {
+            res = res + ' in a Special Magnetic Field or Use Thunder Stone';
           }
           break;
 
@@ -333,13 +338,12 @@ export class PokemonInfoComponent implements OnInit {
       }
     }
     console.log(res);
-    
+
     return res;
   }
 
   setPokemonBackColor(filter: string): any {
     var filterr = TypeColorFilter[filter] ?? 'white';
-    console.log(filterr);
 
     const style = {
       filter: filterr,
@@ -368,4 +372,3 @@ export enum TypeColorFilter {
   steel = 'invert(45%) sepia(5%) saturate(81%) hue-rotate(202deg) brightness(94%) contrast(86%)',
   fairy = 'invert(80%) sepia(14%) saturate(991%) hue-rotate(291deg) brightness(99%) contrast(106%)',
 }
-
