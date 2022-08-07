@@ -1,6 +1,6 @@
 # BESTO POKEDEX (WORK IN PROGRESS)
 
-## Pokedex made in Angular for learning
+## Pokedex made in Angular for fun
 Features:
 >* 2 pokedex styles, Cards mode and Table mode
 >* Pokemon details with basic Informaion, Stats, Abilities...
