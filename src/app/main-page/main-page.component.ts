@@ -35,34 +35,25 @@ export class MainPageComponent implements OnInit {
 
   constructor(private dataService: DataService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (Object.keys(changes).includes('pokemons')) {
-      this.pagination()
-    }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (Object.keys(changes).includes('pokemons')) {
+  //     this.pagination();
+  //   }
+  // }
 
-  }
-
-
-   ngOnInit() : void {
+  ngOnInit(): void {
     this.cardTable = false;
 
-     this.dataService.getPokemonsList().subscribe(async (response: any) => {
-      
-      await response.results.sort().forEach( (result) => {
-         this.dataService.getPokemon(result.name).subscribe((response2: any) => {
+    this.dataService.getPokemonsList().subscribe(async (response: any) => {
+      await response.results.sort().forEach((result) => {
+        this.dataService.getPokemon(result.name).subscribe((response2: any) => {
           this.pokemons.push(response2);
           this.ordenar();
-          this.pagination()
+          this.pagination();
         });
-        
       });
-
-
     });
     console.log(this.pokemons);
-    
-    
-    
   }
 
   changeStyle() {
@@ -92,19 +83,25 @@ export class MainPageComponent implements OnInit {
   nextPage() {
     this.currentPage++;
     this.setPokemonsToShow();
-    //this.scrollTop();
+    this.scrollTop();
   }
   previousPage() {
     this.currentPage--;
     this.setPokemonsToShow();
-    //this.scrollTop();
+    this.scrollTop();
   }
-  pagination(){
+  pagination() {
     if (this.pokemons) {
-      this.numberOfPages =  Math.ceil(
+      this.numberOfPages = Math.ceil(
         this.pokemons.length / this.pokemonsInPage
       );
       this.setPokemonsToShow();
     }
+  }
+  scrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
 }
