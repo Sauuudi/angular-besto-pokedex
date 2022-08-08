@@ -8,7 +8,7 @@ Features:
 >* 2 pokedex styles, Cards mode and Table mode
 >* Pokemon details with basic Informaion, Stats, Abilities...
 >* Evolution chain and evolution details
-
+>* Pagination
  
 ![poke1](https://user-images.githubusercontent.com/33281277/182866449-da6fc567-c5b5-4a0f-84d1-d46b2fe1a888.PNG)
 ![poke2](https://user-images.githubusercontent.com/33281277/182866485-3de69309-501f-4727-9a64-5a8c73ddde87.PNG)
