@@ -1,4 +1,4 @@
-# BESTO POKEDEX (WORK IN PROGRESS)
+# BESTO POKEDEX 
 
 ## Pokedex made in Angular for fun
 
