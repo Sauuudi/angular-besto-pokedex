@@ -1,84 +1,55 @@
-<div class="flex fd-c jc-c ai-c gap-8 mt-16">
-  <div class="flex fd-r gap-16 styleChanger">
+<div class="flex fd-c jc-c ai-c main-container">
+  <div class="flex fd-r styleChanger">
     <img
     (click)="changeTemplate()"
     [ngClass]="{'pika_boss--rotate': cardTable}"
     class="pika_boss"
     src="assets/pikachu.png"
     />
-  <p>Click On Me!!</p>
+  <p>CLICK ON ME!!</p>
   </div>
-  <div class="main_box">
-  <div *ngIf="cardTable">
-    <table class="poke_table" cellspacing="1" cellpadding="1">
-      <thead>
-        <tr>
-          <th width="80">ID</th>
-          <th width="80"></th>
-          <th width="80">Pokemon</th>
-          <th width="80">Tipos</th>
-          <th width="80">PS</th>
-          <th width="80">Att</th>
-          <th width="80">Def</th>
-          <th width="80">AtEsp</th>
-          <th width="80">DefEsp</th>
-          <th width="80">Vel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pokemon of pokemonList">
-          <th width="80">{{ pokemon.id }}</th>
-          <th width="80">
-            <img
-              src="{{ pokemon.sprites.front_default }}"
-              width="50"
-              height="40"
-              alt="poke_img"
-              [routerLink]="'/home/pokemon/' + pokemon.id"
-              routerLinkActive="active"
-              ariaCurrentWhenActive="page"
-              style="cursor: pointer"
-            />
-          </th>
-          <th width="80">
-            <button class="nameClickable">
-              <a
-                class="nameClickable"
-                [routerLink]="'/home/pokemon/' + pokemon.id"
-                routerLinkActive="active"
-                ariaCurrentWhenActive="page"
-                >{{ pokemon.name }}</a
-              >
-            </button>
-          </th>
-          <th width="80">
-            <img
-              src="/assets/types-icons/{{
-                pokemon.types[0].type.name
-              }}.png"
-              width="45"
-              height="20"
-            />
-            <img
-              *ngIf="pokemon.types.length == 2"
-              src="/assets/types-icons/{{
-                pokemon.types[1].type.name
-              }}.png"
-              width="45"
-              height="20"
-            />
-          </th>
-          <td width="80">{{ pokemon.stats[0].base_stat }}</td>
-          <td width="80">{{ pokemon.stats[1].base_stat }}</td>
-          <td width="80">{{ pokemon.stats[2].base_stat }}</td>
-          <td width="80">{{ pokemon.stats[3].base_stat }}</td>
-          <td width="80">{{ pokemon.stats[4].base_stat }}</td>
-          <td width="80">{{ pokemon.stats[5].base_stat }}</td>
-        </tr>
-      </tbody>
-      <tfoot></tfoot>
-    </table>
-  </div>
+  <table *ngIf="cardTable" class="pokemon-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th></th>
+        <th>Pokemon</th>
+        <th>Tipos</th>
+        <th>PS</th>
+        <th>Att</th>
+        <th>Def</th>
+        <th>AtEsp</th>
+        <th>DefEsp</th>
+        <th>Vel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pokemon of pokemonList">
+        <th>{{ pokemon.id }}</th>
+        <td>
+          <img src="{{ pokemon.sprites.front_default }}" alt="{{pokemon.name}}-small-image" class="pokemon-table__image"
+            [routerLink]="'/home/pokemon/' + pokemon.id" />
+        </td>
+        <td>
+          <p class="pokemon-table__name" [routerLink]="'/home/pokemon/' + pokemon.id">
+            {{ pokemon.name }}
+          </p>
+        </td>
+        <td>
+          <div class="flex fd-r jc-c pokemon-table__types">
+            <ng-container *ngFor="let type of pokemon.types">
+              <img
+              src="/assets/types-icons/{{type.type.name}}.png"
+              />
+            </ng-container>
+          </div>
+        </td>
+        <td *ngFor="let stat of pokemon.stats" >
+          {{ stat.base_stat }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <div class="container" *ngIf="!cardTable">
     <div
       class="poke-list"
@@ -95,6 +66,5 @@
     <button (click)="nextPage()" [disabled]="currentPage >= numberOfPages">
       Next
     </button>
-  </div>
   </div>
 </div>

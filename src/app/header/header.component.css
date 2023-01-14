@@ -1,6 +1,6 @@
 header {
   text-align: center;
-  background-color: rgb(235, 86, 86);
+  background-color: var(--header-color);
     align-items: center ;
     align-content: center;
     display:flex;

@@ -35,6 +35,7 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit(){
+    console.log('recordatorio: set table header wirth u otra forma, mejorar header, hacer reminder de los dos estilos, search, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes');
     this.cardTable = true;
     this.pokemonCount = this.dataService.pokemonLimit;
     
@@ -58,8 +59,6 @@ export class MainPageComponent implements OnInit {
       this.sortPokemonList()
     }
 }
-
-
   private searchPokemon() {
     
   }
