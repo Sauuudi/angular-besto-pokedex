@@ -1,0 +1,168 @@
+* {
+  font-size: 18px;
+  color: rgb(175, 175, 175);
+}
+.main_box {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.pokemon-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  
+  &__basic-info {
+    gap: 1.5em;
+    display: inline-flex;
+    flex-direction: row;
+    
+    .basic-info-col {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+    
+    div:nth-of-type(1) {
+      font-weight: bold;
+      text-align: end;
+    }
+    div:nth-of-type(2) {
+      text-align: center;
+    }
+
+    
+  }
+  &__types {
+    flex-direction: row;
+    justify-content: center;
+    display: inline-flex;
+    gap: 0.4rem;
+
+    img {
+      max-width: 4rem;
+    }
+  }
+  
+  &__abilities {
+    display: inline-flex;
+    gap: 0.4rem;
+    
+    span {
+      /* cambiar color dependeiendo del tipo mirar como hacerlo */
+      background-color: #c06d51;
+      color: white;
+      border-radius: 0.5rem;
+      padding: 5px 5px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__pokemon-image {
+    position: relative;
+    display: inline-block;
+
+   
+    .pokemon-back-image {
+      transform: rotate(-20deg);
+      opacity: 0.3;
+      min-width: 150px;
+      max-width: 100%;  
+    }
+    .pokemon-image {
+      position: absolute;
+      min-width: 150px;
+      max-width: 100%;
+      left: -5px;
+      top: 0;
+    }
+    div {
+      text-align: center;
+      text-transform: capitalize;
+      font-size: xx-large;
+    }
+  }
+
+  //toca stats
+  &__stats {
+
+  }
+  
+}
+
+.row_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.column_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.evolution_main_box {
+  padding-top: 10%;
+}
+
+.evolution_images_box {
+  justify-content: center;
+
+  align-items: center;
+}
+
+.evo_img {
+  width: 150px;
+}
+
+.flecha_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.flecha {
+  width: 50px;
+}
+
+
+.table td,
+.table th {
+  padding: 0.2rem;
+  vertical-align: top;
+}
+
+
+
+.margin_evee {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.flechaUpLeft {
+  transform: rotate(-135deg) !important;
+}
+.flechaUp {
+  transform: rotate(-90deg) !important;
+}
+.flechaUpRight {
+  transform: rotate(-45deg) !important;
+}
+.flechaLeft {
+  transform: rotate(-180deg) !important;
+}
+.flechaDownLeft {
+  transform: rotate(135deg) !important;
+}
+.flechaDown {
+  transform: rotate(90deg) !important;
+}
+.flechaDownRight {
+  transform: rotate(45deg) !important;
+}

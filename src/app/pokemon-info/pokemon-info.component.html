@@ -1,77 +1,52 @@
-<div class="main_box column_box">
-  <div class="info_top_box row_box">
-    <div class="info_row">
-      <table class="table table-borderless">
-        <tr>
-          <td></td>
-          <td><h3>INFO</h3></td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">ID</td>
-          <td>Nº{{ pokemon.id }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Heigth</td>
-          <td>{{ pokemon.height / 10 }} m</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Weight</td>
-          <td>{{ pokemon.weight / 10 }} kg</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Type</td>
-          <td>
-            <img
-              src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
-              width="60"
-              height="30"
-              style="margin-right: 5px"
-            />
-            <img
-              *ngIf="pokemon.types.length == 2"
-              src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
-              width="60"
-              height="30"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Abilities</td>
-          <td>
-            <span class="ability color text-uppercase">{{
-              pokemon.abilities[0].ability.name
-            }}</span>
-            <span
-              class="ability color text-uppercase"
-              *ngIf="pokemon.abilities.length == 2"
-            >
-              {{ pokemon.abilities[1].ability.name }}
-            </span>
-            <span
-              class="ability color text-uppercase"
-              *ngIf="pokemon.abilities.length == 3"
-            >
-              {{ pokemon.abilities[2].ability.name }}
-            </span>
-          </td>
-        </tr>
-      </table>
+<div class="main_box">
+  <div class="pokemon-info">
+      <div class="pokemon-info__basic-info">
+      
+      <div class="basic-info-col">
+        <p>ID</p>
+        <p>Height</p>
+        <p>Weight</p>
+        <p>Type</p>
+        <p>Abilities</p>
+      </div>
+      <div class="basic-info-col">
+        <p>Nº{{ pokemon.id }}</p>
+        <p>{{ pokemon.height / 10 }}m</p>
+        <p>{{ pokemon.weight / 10 }}kg</p>
+        <div class="pokemon-info__types">
+          <img
+            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
+            alt=""
+          />
+          <img
+            *ngIf="pokemon.types.length == 2"
+            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
+            alt=""
+          />
+        </div>
+        <div class="pokemon-info__abilities">
+          <span *ngFor="let ability of pokemon.abilities" >
+            {{ability.ability.name}}
+          </span>
+        </div>
+      </div>
     </div>
 
-    <div class="imagen_box column_box">
+    <div class="pokemon-info__pokemon-image">
       <img
-          class="back_img"
-          src="assets/card_background.png"
-          [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"
+        class="pokemon-back-image"
+        src="assets/card_background.png"
+        [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"
+        alt="pokemon-back-image"
         />
       <img
-      class="main_image"
+        class="pokemon-image"
         src="{{ mainImageLink }}"
-        
-        alt="poke_img"
+        alt="pokemon-image"
       />
-      <span  class="text-uppercase main_name">{{ pokemon.name }}</span>
+      <div>{{ pokemon.name }}</div>
     </div>
+
     <div class="info_row">
       <table class="table table-borderless">
         <tr>

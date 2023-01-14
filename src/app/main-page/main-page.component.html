@@ -38,15 +38,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pokemon of pokemonsToShow; index as index">
-            <th width="80">{{ pokemonsToShow[index].id }}</th>
+          <tr *ngFor="let pokemon of pokemonList">
+            <th width="80">{{ pokemon.id }}</th>
             <th width="80">
               <img
-                src="{{ pokemonsToShow[index].sprites.front_default }}"
+                src="{{ pokemon.sprites.front_default }}"
                 width="50"
                 height="40"
                 alt="poke_img"
-                [routerLink]="'/home/pokemon/' + pokemonsToShow[index].id"
+                [routerLink]="'/home/pokemon/' + pokemon.id"
                 routerLinkActive="active"
                 ariaCurrentWhenActive="page"
                 style="cursor: pointer"
@@ -56,36 +56,36 @@
               <button class="nameClickable">
                 <a
                   class="nameClickable"
-                  [routerLink]="'/home/pokemon/' + pokemonsToShow[index].id"
+                  [routerLink]="'/home/pokemon/' + pokemon.id"
                   routerLinkActive="active"
                   ariaCurrentWhenActive="page"
-                  >{{ pokemonsToShow[index].name }}</a
+                  >{{ pokemon.name }}</a
                 >
               </button>
             </th>
             <th width="80">
               <img
                 src="/assets/types-icons/{{
-                  pokemonsToShow[index].types[0].type.name
+                  pokemon.types[0].type.name
                 }}.png"
                 width="45"
                 height="20"
               />
               <img
-                *ngIf="pokemonsToShow[index].types.length == 2"
+                *ngIf="pokemon.types.length == 2"
                 src="/assets/types-icons/{{
-                  pokemonsToShow[index].types[1].type.name
+                  pokemon.types[1].type.name
                 }}.png"
                 width="45"
                 height="20"
               />
             </th>
-            <td width="80">{{ pokemonsToShow[index].stats[0].base_stat }}</td>
-            <td width="80">{{ pokemonsToShow[index].stats[1].base_stat }}</td>
-            <td width="80">{{ pokemonsToShow[index].stats[2].base_stat }}</td>
-            <td width="80">{{ pokemonsToShow[index].stats[3].base_stat }}</td>
-            <td width="80">{{ pokemonsToShow[index].stats[4].base_stat }}</td>
-            <td width="80">{{ pokemonsToShow[index].stats[5].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[0].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[1].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[2].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[3].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[4].base_stat }}</td>
+            <td width="80">{{ pokemon.stats[5].base_stat }}</td>
           </tr>
         </tbody>
         <tfoot></tfoot>
@@ -94,9 +94,9 @@
     <div class="container" *ngIf="!cardTable">
       <div
         class="poke-list"
-        *ngFor="let pokemon of pokemonsToShow; index as index"
+        *ngFor="let pokemon of pokemonList"
       >
-        <app-poke-card [pokemon]="pokemonsToShow[index]"> </app-poke-card>
+        <app-poke-card [pokemon]="pokemon"> </app-poke-card>
       </div>
     </div>
     <div class="pagination">

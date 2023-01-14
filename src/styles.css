@@ -10,3 +10,22 @@ body {
     background:linear-gradient(to right, #404040, #252525);
 }
 
+.flex {
+    display: flex;
+}
+
+.fd-c {
+    flex-direction: column;
+}
+
+.fd-r {
+    flex-direction: row;
+}
+
+.jc-c {
+    justify-content: center;
+}
+
+.ai-c {
+    align-items: center;
+}

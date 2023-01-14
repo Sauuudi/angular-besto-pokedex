@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { DataService } from '../shared/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
-  styleUrls: ['./pokemon-info.component.css'],
+  styleUrls: ['./pokemon-info.component.scss'],
 })
 export class PokemonInfoComponent implements OnInit {
   pokemon: any;
@@ -38,11 +38,13 @@ export class PokemonInfoComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap) => {
       this.pokemonId = paramMap.get('id');
     });
-    var obs1 = this.dataService
+    // unsuscribe on destroy
+    const getPokemonSubscription = this.dataService
       .getPokemon(this.pokemonId)
       .subscribe((response: any) => {
         this.pokemon = response;
-        obs1.unsubscribe();
+        console.log(this.pokemon.abilities);
+        
       });
 
     this.dataService

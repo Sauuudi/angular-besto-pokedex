@@ -1,5 +1,5 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { AfterViewInit, Component, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
+import { DataService } from '../shared/services/data.service';
 import {
   trigger,
   state,
@@ -7,13 +7,14 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { Pokemon } from '../shared/models/pokemon.model';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css'],
+  styleUrls: ['./main-page.component.scss'],
   animations: [
-    // Each unique animation requires its own trigger. The first argument of the trigger function is the name
+// change to css animation
     trigger('rotatedState', [
       state('default', style({ transform: 'rotate(0 )' })),
       state('rotated', style({ transform: 'rotate(-360deg)' })),
@@ -23,37 +24,57 @@ import {
   ],
 })
 export class MainPageComponent implements OnInit {
-  pokemons: any[] = [];
-  cardTable: boolean = true;
+  pokemonList: Pokemon[];
+  pokemonCount;
+
+  iterableDiffer:IterableDiffer<Pokemon>;
+
+  pokemonsToShow: Pokemon[];
+  pokemonLimitPerPage = 60;
+
+
+  cardTable: boolean;
   state: string = 'default';
   currentPage: number = 1;
   numberOfPages: number = 1;
-  pokemonsToShow: any[] = [];
-  pokemonsInPage = 60;
   firstPoke = 0;
   lastPoke = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(
+    private dataService: DataService,
+    private iterableDiffers: IterableDiffers
+  ) {
+    this.iterableDiffer = iterableDiffers.find([]).create(null);
+  }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (Object.keys(changes).includes('pokemons')) {
-  //     this.pagination();
-  //   }
-  // }
-
-  ngOnInit(): void {
-    this.cardTable = false;
-
-    this.dataService.getPokemonsList().subscribe(async (response: any) => {
-      await response.results.sort().forEach((result) => {
-        this.dataService.getPokemon(result.name).subscribe((response2: any) => {
-          this.pokemons.push(response2);
-          this.ordenar();
-          this.pagination();
-        });
+  ngOnInit(){
+    this.cardTable = true;
+    this.pokemonCount = this.dataService.pokemonLimit;
+    
+    // en el futuro quiero guardar los pokemon en local y si ya estan cargados los pillamos asi
+    // if(this.dataService.pokemonList.length) {
+      //this.pokemonList = this.dataService.pokemonList;
+    // }
+    //else {
+      // de momento dejamos solo la suscripcion 
+      this.dataService.getPokemonList(50).subscribe( pokemonList => {
+        this.pokemonList = pokemonList;
+        console.log(this.pokemonList)
       });
-    });
-    console.log(this.pokemons);
+    // }
+  }
+
+  ngDoCheck() {
+    let changes = this.iterableDiffer.diff(this.pokemonList);
+    if (changes) {
+      console.log('pokemon list changed');
+      this.sortPokemonList()
+    }
+}
+
+
+  private searchPokemon() {
+    
   }
 
   changeStyle() {
@@ -62,40 +83,41 @@ export class MainPageComponent implements OnInit {
   rotate() {
     this.state = this.state === 'default' ? 'rotated' : 'default';
   }
-  ordenar() {
-    this.pokemons = this.pokemons.sort((pkm1, pkm2) => {
-      return pkm1.id - pkm2.id;
+
+  sortPokemonList() {
+    this.pokemonList = this.pokemonList.sort((pokemon1, pokemon2) => {
+      return pokemon1.id - pokemon2.id;
     });
   }
 
-  setPokemonsToShow() {
-    const first = (this.currentPage - 1) * this.pokemonsInPage;
-    const last = this.currentPage * this.pokemonsInPage;
+  loadPokemonsToShow() {
+    const first = (this.currentPage - 1) * this.pokemonLimitPerPage;
+    const last = this.currentPage * this.pokemonLimitPerPage;
     this.firstPoke = first;
-    if (last > this.pokemons.length) {
-      this.lastPoke = this.pokemons.length;
+    if (last > this.pokemonCount) {
+      this.lastPoke = this.pokemonCount;
     } else {
       this.lastPoke = last;
     }
-    this.pokemonsToShow = this.pokemons.slice(first, last);
+    this.pokemonsToShow = this.pokemonList.slice(first, last);
   }
 
   nextPage() {
     this.currentPage++;
-    this.setPokemonsToShow();
+    this.loadPokemonsToShow();
     this.scrollTop();
   }
   previousPage() {
     this.currentPage--;
-    this.setPokemonsToShow();
+    this.loadPokemonsToShow();
     this.scrollTop();
   }
   pagination() {
-    if (this.pokemons) {
+    if (this.pokemonList) {
       this.numberOfPages = Math.ceil(
-        this.pokemons.length / this.pokemonsInPage
+        this.pokemonCount / this.pokemonLimitPerPage
       );
-      this.setPokemonsToShow();
+      this.loadPokemonsToShow();
     }
   }
   scrollTop() {
@@ -104,4 +126,5 @@ export class MainPageComponent implements OnInit {
       behavior: 'smooth'
     })
   }
+
 }

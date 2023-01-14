@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Resolve, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page.component';
 import { PokemonInfoComponent } from './pokemon-info/pokemon-info.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    title: 'BESTO POKEDEX',
+    title: 'Besto Pokedex',
     component: MainPageComponent,
   },
   {
