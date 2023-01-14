@@ -1,27 +1,11 @@
 import { AfterViewInit, Component, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
 import { DataService } from '../shared/services/data.service';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
 import { Pokemon } from '../shared/models/pokemon.model';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
-  animations: [
-// change to css animation
-    trigger('rotatedState', [
-      state('default', style({ transform: 'rotate(0 )' })),
-      state('rotated', style({ transform: 'rotate(-360deg)' })),
-      transition('rotated => default', animate('0.4s')),
-      transition('default => rotated', animate('0.4s')),
-    ]),
-  ],
 })
 export class MainPageComponent implements OnInit {
   pokemonList: Pokemon[];
@@ -32,9 +16,12 @@ export class MainPageComponent implements OnInit {
   pokemonsToShow: Pokemon[];
   pokemonLimitPerPage = 60;
 
-
   cardTable: boolean;
+  //make animation in css
   state: string = 'default';
+
+
+  // change pagination logic xdd
   currentPage: number = 1;
   numberOfPages: number = 1;
   firstPoke = 0;
@@ -77,11 +64,8 @@ export class MainPageComponent implements OnInit {
     
   }
 
-  changeStyle() {
+  changeTemplate() {
     this.cardTable = !this.cardTable;
-  }
-  rotate() {
-    this.state = this.state === 'default' ? 'rotated' : 'default';
   }
 
   sortPokemonList() {
