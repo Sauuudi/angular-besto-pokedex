@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
+import { Component, IterableDiffer, IterableDiffers, OnInit } from '@angular/core';
 import { DataService } from '../shared/services/data.service';
 import { Pokemon } from '../shared/models/pokemon.model';
 
@@ -9,7 +9,7 @@ import { Pokemon } from '../shared/models/pokemon.model';
 })
 export class MainPageComponent implements OnInit {
   pokemonList: Pokemon[];
-  pokemonCount;
+  pokemonCount: number;
 
   iterableDiffer:IterableDiffer<Pokemon>;
 
@@ -17,15 +17,6 @@ export class MainPageComponent implements OnInit {
   pokemonLimitPerPage = 60;
 
   cardTable: boolean;
-  //make animation in css
-  state: string = 'default';
-
-
-  // change pagination logic xdd
-  currentPage: number = 1;
-  numberOfPages: number = 1;
-  firstPoke = 0;
-  lastPoke = 0;
 
   constructor(
     private dataService: DataService,
@@ -36,7 +27,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(){
     console.log('recordatorio: set table header wirth u otra forma, mejorar header, hacer reminder de los dos estilos, search, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes');
-    this.cardTable = true;
+    this.cardTable = false;
     this.pokemonCount = this.dataService.pokemonLimit;
     
     // en el futuro quiero guardar los pokemon en local y si ya estan cargados los pillamos asi
@@ -47,7 +38,6 @@ export class MainPageComponent implements OnInit {
       // de momento dejamos solo la suscripcion 
       this.dataService.getPokemonList(50).subscribe( pokemonList => {
         this.pokemonList = pokemonList;
-        console.log(this.pokemonList)
       });
     // }
   }
@@ -58,7 +48,8 @@ export class MainPageComponent implements OnInit {
       console.log('pokemon list changed');
       this.sortPokemonList()
     }
-}
+  }
+
   private searchPokemon() {
     
   }
@@ -71,43 +62,47 @@ export class MainPageComponent implements OnInit {
     this.pokemonList = this.pokemonList.sort((pokemon1, pokemon2) => {
       return pokemon1.id - pokemon2.id;
     });
-  }
-
-  loadPokemonsToShow() {
-    const first = (this.currentPage - 1) * this.pokemonLimitPerPage;
-    const last = this.currentPage * this.pokemonLimitPerPage;
-    this.firstPoke = first;
-    if (last > this.pokemonCount) {
-      this.lastPoke = this.pokemonCount;
-    } else {
-      this.lastPoke = last;
-    }
-    this.pokemonsToShow = this.pokemonList.slice(first, last);
-  }
-
-  nextPage() {
-    this.currentPage++;
-    this.loadPokemonsToShow();
-    this.scrollTop();
-  }
-  previousPage() {
-    this.currentPage--;
-    this.loadPokemonsToShow();
-    this.scrollTop();
-  }
-  pagination() {
-    if (this.pokemonList) {
-      this.numberOfPages = Math.ceil(
-        this.pokemonCount / this.pokemonLimitPerPage
-      );
-      this.loadPokemonsToShow();
-    }
-  }
-  scrollTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
-
+  } 
 }
+
+// // change pagination logic xdd
+// currentPage: number = 1;
+// numberOfPages: number = 1;
+// firstPoke = 0;
+// lastPoke = 0;
+
+// loadPokemonsToShow() {
+//   const first = (this.currentPage - 1) * this.pokemonLimitPerPage;
+//   const last = this.currentPage * this.pokemonLimitPerPage;
+//   this.firstPoke = first;
+//   if (last > this.pokemonCount) {
+//     this.lastPoke = this.pokemonCount;
+//   } else {
+//     this.lastPoke = last;
+//   }
+//   this.pokemonsToShow = this.pokemonList.slice(first, last);
+// }
+// nextPage() {
+//   this.currentPage++;
+//   this.loadPokemonsToShow();
+//   this.scrollTop();
+// }
+// previousPage() {
+//   this.currentPage--;
+//   this.loadPokemonsToShow();
+//   this.scrollTop();
+// }
+// pagination() {
+//   if (this.pokemonList) {
+//     this.numberOfPages = Math.ceil(
+//       this.pokemonCount / this.pokemonLimitPerPage
+//     );
+//     this.loadPokemonsToShow();
+//   }
+// }
+// scrollTop() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth'
+//   })
+// }

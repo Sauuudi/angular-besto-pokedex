@@ -1,40 +1,10 @@
-<div
-  class="card_container grass2"
-  [ngStyle]="setPokemonCardColor(pokemon.types[0].type.name)"
->
-  <div class="card_pokemon">
-    <a
-      [routerLink]="'pokemon/' + pokemon.id"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      <header class="card_img_container">
-        <img
-          class="backImg"
-          src="assets/card_background.png"
-          [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"
-        />
-        <img class="pokeImg" src="{{ imgLink }}" alt="poke_img" />
-      </header>
-      <div class="card_info">
-        <span  class="card_number">
-          {{ pokemon.id }}
-        </span>
-        <h3 class="card_name" >
-          {{ pokemon.name }}
-        </h3>
-        <div class="card_wrapper">
-          <img
-            class="type-img"
-            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
-          />
-          <img
-            class="type-img"
-            *ngIf="pokemon.types.length == 2"
-            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
-          />
-        </div>
-      </div>
-    </a>
+<div class="card-background" [ngStyle]="setPokemonCardColor(pokemon.types[0].type.name)">
+  <div class="card">
+    <p class="card__id flex jc-e">#{{ pokemon?.id | sliceNumber:3}}</p>
+    <div class="card__image-container" [routerLink]="'pokemon/' + pokemon.id">
+        <img src="assets/card_background.png" [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"/>
+        <img src="{{imgLink}}" alt="{{pokemon.name}}_image"/>
+    </div>
   </div>
+  <div class="card-name flex jc-c ai-c">{{ pokemon.name }}</div>
 </div>

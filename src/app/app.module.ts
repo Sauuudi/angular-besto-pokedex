@@ -11,6 +11,7 @@ import { PokeCardComponent } from './main-page/poke-card/poke-card.component';
 import { PokemonSearchPipe } from './shared/pipes/pokemon-search.pipe';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { SliceNumberPipe } from './shared/pipes/slice-number';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
     PokemonInfoComponent,
     PokeCardComponent,
     PokemonSearchPipe,
+    SliceNumberPipe,
     
   ],
   imports: [

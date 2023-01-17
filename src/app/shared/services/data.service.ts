@@ -16,6 +16,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getPokemonList(numPokemonsToGet: number = this.pokemonLimit) {
+    this.pokemonList = [];
     return this.getRawAllPokemonData(numPokemonsToGet)
     .pipe(
       map( pokemonsUrlsAndNames => {

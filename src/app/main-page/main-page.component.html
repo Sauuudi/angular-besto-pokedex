@@ -50,21 +50,20 @@
       </tr>
     </tbody>
   </table>
-  <div class="container" *ngIf="!cardTable">
-    <div
-      class="poke-list"
-      *ngFor="let pokemon of pokemonList"
-    >
-      <app-poke-card [pokemon]="pokemon"> </app-poke-card>
-    </div>
-  </div>
-  <div class="pagination">
-    <button (click)="previousPage()" [disabled]="currentPage <= 1">
-      Previous
-    </button>
-    <p>Page {{ currentPage }} of {{ numberOfPages }}</p>
-    <button (click)="nextPage()" [disabled]="currentPage >= numberOfPages">
-      Next
-    </button>
+  <div class="flex jc-se pokemon-list" *ngIf="!cardTable">
+    <ng-container *ngFor="let pokemon of pokemonList">
+      <app-poke-card [pokemon]="pokemon"></app-poke-card>
+    </ng-container>
   </div>
 </div>
+
+<!-- 
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage <= 1">
+    Previous
+  </button>
+  <p>Page {{ currentPage }} of {{ numberOfPages }}</p>
+  <button (click)="nextPage()" [disabled]="currentPage >= numberOfPages">
+    Next
+  </button>
+</div> -->

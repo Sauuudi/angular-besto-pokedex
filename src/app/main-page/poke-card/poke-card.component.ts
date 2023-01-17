@@ -1,24 +1,16 @@
-import { Component, Input, OnInit, Type } from '@angular/core';
-import { reduce } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-poke-card',
   templateUrl: './poke-card.component.html',
-  styleUrls: ['./poke-card.component.css'],
+  styleUrls: ['./poke-card.component.scss'],
 })
 export class PokeCardComponent implements OnInit {
   @Input() pokemon: any;
   imgLink: any;
 
-  constructor() {}
-
   ngOnInit(): void {
-    
-    this.imgLink = "assets/pokemon_images_compressed/" + this.pokemon.id + ".png"
-    // this.imgLink =
-    //   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-    //   this.pokemon.id +
-    //   '.png';
+    this.imgLink = `assets/defualt-compressed-images/${this.pokemon.id}.png`;
   }
 
   setPokemonCardColor(color: string): any {
@@ -28,43 +20,43 @@ export class PokeCardComponent implements OnInit {
     };
     return style;
   }
+
   setPokemonNameColor(color: string): any {
     color = TypeColor[color] ?? 'white';
     const style = {
       background: color,
-      
     };
     return style;
   }
 
   setPokemonBackColor(filter: string): any {
     var filterr = TypeColorFilter[filter] ?? 'white';
-
     const style = {
       filter: filterr,
     };
     return style;
   }
 }
+
 export enum TypeColor {
-  normal = '#cfcfcc',
-  fire = '#e04a24',
-  water = '#4c82f5',
-  electric = '#fcd83a',
-  grass = '#3ccc31',
-  ice = '#89faf3',
-  fighting = '#a1592d',
-  poison = '#a148a1',
-  ground = '#dbb148',
-  flying = '#a6adff',
-  psychic = '#fa7099',
-  bug = '#c3d446',
-  rock = '#a8925b',
-  ghost = '#6e408f',
-  dragon = '#9f79fc',
-  dark = '#524841',
-  steel = '#6f6f70',
-  fairy = '#ffb8dd',
+  normal = '#AAA67F',
+  fire = '#F57D31',
+  water = '#6493EB',
+  electric = '#F9CF30',
+  grass = '#74CB48',
+  ice = '#9AD6DF',
+  fighting = '#C12239',
+  poison = '#A43E9E',
+  ground = '#DEC16B',
+  flying = '#A891EC',
+  psychic = '#FB5584',
+  bug = '#A7B723',
+  rock = '#B69E31',
+  ghost = '#70559B',
+  dragon = '#7037FF',
+  dark = '#75574C',
+  steel = '#B7B9D0',
+  fairy = '#E69EAC',
 }
 export enum TypeColorFilter {
   normal = 'invert(100%) sepia(1%) saturate(786%) hue-rotate(1deg) brightness(90%) contrast(78%)',
