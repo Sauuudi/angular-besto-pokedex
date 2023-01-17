@@ -13,7 +13,7 @@ export class PokeCardComponent implements OnInit {
     this.imgLink = `assets/defualt-compressed-images/${this.pokemon.id}.png`;
   }
 
-  setPokemonCardColor(color: string): any {
+  setCardBackgroundColor(color: string): any {
     color = TypeColor[color] ?? 'white';
     const style = {
       background: color,
@@ -21,15 +21,15 @@ export class PokeCardComponent implements OnInit {
     return style;
   }
 
-  setPokemonNameColor(color: string): any {
+  setIdColor(color: string): any {
     color = TypeColor[color] ?? 'white';
     const style = {
-      background: color,
+      color: color,
     };
     return style;
   }
 
-  setPokemonBackColor(filter: string): any {
+  setPokeballColor(filter: string): any {
     var filterr = TypeColorFilter[filter] ?? 'white';
     const style = {
       filter: filterr,
