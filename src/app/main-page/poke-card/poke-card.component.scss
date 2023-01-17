@@ -8,6 +8,7 @@
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 10%;
   box-shadow: 0 0.2rem 1rem rgba(100, 100, 100, 0.5);
+  cursor: pointer;
 }
 
 .card {
@@ -31,6 +32,7 @@
       width: 100%;
       transform: rotate(-20deg);
       opacity: 0.3;
+      pointer-events: none;
     }
 
     img:nth-child(2) {
@@ -38,6 +40,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      pointer-events: none;
     }
   }
 }
@@ -45,4 +48,5 @@
 .card-name {
   height: 2.5rem;
   text-transform: capitalize;
+  color: white;
 }

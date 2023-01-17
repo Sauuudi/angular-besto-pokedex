@@ -1,6 +1,6 @@
 :host {
   font-size: 16px;
-  color: white; 
+  color: white;
 }
 
 .main-container {
@@ -41,7 +41,6 @@
     width: max-content;
     background-color: var(--table-cell-bg-color);
     align-items: center;
-    color: white;
   }
 
   &__image {
@@ -54,10 +53,12 @@
     text-transform: capitalize;
     cursor: pointer;
     font-size: 0.75rem;
+    color: white;
   }
   
   &__name:hover {
     font-size: 0.85rem;
+    color: white;
   }
 
   &__types {

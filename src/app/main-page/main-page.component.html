@@ -27,13 +27,14 @@
       <tr *ngFor="let pokemon of pokemonList">
         <th>{{ pokemon.id }}</th>
         <td>
-          <img src="{{ pokemon.sprites.front_default }}" alt="{{pokemon.name}}-small-image" class="pokemon-table__image"
-            [routerLink]="'/home/pokemon/' + pokemon.id" />
+          <a [routerLink]="'/home/pokemon/' + pokemon.id" >
+            <img src="{{ pokemon.sprites.front_default }}" alt="{{pokemon.name}}-small-image" class="pokemon-table__image"/>
+          </a>
         </td>
         <td>
-          <p class="pokemon-table__name" [routerLink]="'/home/pokemon/' + pokemon.id">
-            {{ pokemon.name }}
-          </p>
+          <a [routerLink]="'/home/pokemon/' + pokemon.id" >
+            <p class="pokemon-table__name">{{ pokemon.name }}</p>
+          </a>
         </td>
         <td>
           <div class="flex fd-r jc-c pokemon-table__types">
