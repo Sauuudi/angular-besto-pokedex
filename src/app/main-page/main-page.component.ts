@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
 })
 export class MainPageComponent implements OnInit, OnDestroy {
   pokemonList: Pokemon[];
-  pokemonCount: number;
-
   pokemonsToShow: Pokemon[];
+  
+  pokemonCount: number;
   pokemonLimitPerPage = 60;
 
   cardTable: boolean;
@@ -37,8 +37,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
     //else {
       // de momento dejamos solo la suscripcion 
       this.dataService.getPokemonList(50).subscribe( pokemonList => {
-        this.pokemonList = this.sortPokemonList(pokemonList);
-        this.pokemonsToShow = this.pokemonList;
+        this.pokemonList = pokemonList;
+        this.pokemonsToShow = this.sortPokemonList(this.pokemonList);
       });
     // }
       this.searchSuscription = this.searchHelper.getSearchValues().subscribe( searchValues => {        
