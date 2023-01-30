@@ -2,7 +2,7 @@
   <div class="card-background" [ngStyle]="setCardBackgroundColor(pokemon.types[0].type.name)">
     <div class="card">
       <p class="card__id flex jc-e" [ngStyle]="setIdColor(pokemon.types[0].type.name)">
-      #{{ pokemon?.id | sliceNumber:3}}</p>
+      #{{ pokemonId | sliceNumber:3 }}</p>
       <div class="card__image-container">
           <img src="assets/card_background.png" [ngStyle]="setPokeballColor(pokemon.types[0].type.name)"/>
           <img src="{{imgLink}}" alt="{{pokemon.name}}_image"/>

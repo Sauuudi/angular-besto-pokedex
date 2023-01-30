@@ -12,6 +12,8 @@ import { PokemonSearchPipe } from './shared/pipes/pokemon-search.pipe';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SliceNumberPipe } from './shared/pipes/slice-number';
+import { FormsModule } from '@angular/forms';
+import { SearchComponentComponent } from './search-component/search-component.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,15 @@ import { SliceNumberPipe } from './shared/pipes/slice-number';
     PokeCardComponent,
     PokemonSearchPipe,
     SliceNumberPipe,
+    SearchComponentComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pokemon of pokemonList">
+      <tr *ngFor="let pokemon of pokemonsToShow">
         <th>{{ pokemon.id }}</th>
         <td>
           <a [routerLink]="'/home/pokemon/' + pokemon.id" >
@@ -52,7 +52,7 @@
     </tbody>
   </table>
   <div class="flex jc-se pokemon-list" *ngIf="!cardTable">
-    <ng-container *ngFor="let pokemon of pokemonList">
+    <ng-container *ngFor="let pokemon of pokemonsToShow">
       <app-poke-card [pokemon]="pokemon"></app-poke-card>
     </ng-container>
   </div>
