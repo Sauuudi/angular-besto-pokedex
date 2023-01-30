@@ -1,0 +1,21 @@
+:host {
+  background-color: var(--header-color);
+  display: flex;
+  align-items: center;
+  height: 2.8rem;
+}
+
+.title{
+  text-transform: capitalize;
+  text-align: center;
+  color: white;
+  letter-spacing: 4px;
+  cursor: pointer;
+  font-size: 2rem;
+  flex: 1;
+}
+
+.search-bar {
+  margin-right: 2rem;
+}
+
