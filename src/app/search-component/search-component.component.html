@@ -1,0 +1,3 @@
+<input #searchInput type="text" class="search__input" (input)="onTyping()" [placeholder]="placeholder"
+    [(ngModel)]="textSearched">
+<img class="search__reset" (click)="onReset()" src="assets/x-icon-grey.png" alt="clear search">

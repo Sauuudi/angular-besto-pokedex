@@ -1,0 +1,31 @@
+:host {
+    font-size: 16px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.search {
+  &__input {
+    border-radius: 1rem;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  &__reset {
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    filter: brightness(10);
+  }
+
+  &__reset:hover,
+  &__reset:focus {
+    filter: brightness(0.5);
+  }
+
+  &__reset {
+    margin: 0.5rem;
+    margin-right: 1rem;
+  }
+}
