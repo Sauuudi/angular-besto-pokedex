@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../shared/services/data.service';
 import { Pokemon } from '../shared/models/pokemon.model';
-import { SearchHelperService } from '../shared/helpers/search-helper.service';
+import { SearchHelperService } from '../shared/services/search-helper.service';
 import { Subscription } from 'rxjs';
 
 @Component({

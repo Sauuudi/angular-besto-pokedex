@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SearchHelperService } from '../shared/helpers/search-helper.service';
+import { SearchHelperService } from '../shared/services/search-helper.service';
 
 @Component({
   selector: 'app-search-component',
