@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../shared/services/data.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Pokemon } from '../shared/models/pokemon.model';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
@@ -34,29 +35,12 @@ export class PokemonInfoComponent implements OnInit {
     private http: HttpClient
   ) {}
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((paramMap) => {
-      this.pokemonId = paramMap.get('id');
-    });
+  async ngOnInit() {
+    this.pokemonId = this.route.snapshot.paramMap.get('id');
     // unsuscribe on destroy
-    const getPokemonSubscription = this.dataService
-      .getPokemon(this.pokemonId)
-      .subscribe((response: any) => {
-        this.pokemon = response;
-        console.log(this.pokemon.abilities);
-        
-      });
-
-    this.dataService
-      .getPokemonSpecies(this.pokemonId)
-      .subscribe((pokeSpecie: any) => {
-        this.dataService
-          .getEvolutionChain(pokeSpecie.evolution_chain.url)
-          .subscribe((evo_chain: any) => {
-            var chain = evo_chain.chain;
-
-            this.getEvolutionChain(chain);
-          });
+    await this.dataService.getPokemon(this.pokemonId, true).subscribe((pokemon: Pokemon) => {
+        console.log(pokemon);
+        this.pokemon = pokemon;
       });
 
     //this.mainImageLink = 'assets/pokemon_images_compressed/' + this.pokemonId+ '.png';

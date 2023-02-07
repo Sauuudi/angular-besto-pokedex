@@ -1,28 +1,32 @@
-export class Pokemon {
-  constructor(
-      public name: string,
-      public id: number,
-      public height: number,
-      public weight: number,
-      public types: any[],
-      public abilities: any[],
-      public moves: any[],
-      public stats: any[],
-      public sprites: any,
-      public speciesUrl: string,
-      public speciesDetails?: PokemonSpecies,
-      public evolutionChainID?,
-  ) {}
+export interface Pokemon {
+  name: string;
+  id: number;
+  height: number;
+  weight: number;
+  types: any[];
+  abilities: any[];
+  moves: any[];
+  stats: any[];
+  sprites: any;
+  speciesDetails?: PokemonSpeciesDetails;
+  evolutionChain?: PokemonEvolutionChain;
 }
 
-export class PokemonSpecies {
-
+export interface PokemonSpeciesDetails {
+  evolutionChainUrl: string;
+}
+export interface PokemonEvolutionChain {
+  chain: any;
 }
 
+export interface PokemonExtras {
+  speciesDetails: PokemonSpeciesDetails;
+  evolutionChain: PokemonEvolutionChain;
+}
 
 export interface PokemonList {
-  count: number,
-  results: {name: string, url: string}[],
+  count: number;
+  results: { name: string; url: string }[];
 }
 
 export enum TypeColor {
