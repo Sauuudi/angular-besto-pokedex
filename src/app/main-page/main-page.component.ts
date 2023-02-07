@@ -12,42 +12,38 @@ import { Subscription } from 'rxjs';
 export class MainPageComponent implements OnInit, OnDestroy {
   pokemonList: Pokemon[];
   pokemonsToShow: Pokemon[];
-  
   pokemonCount: number;
   pokemonLimitPerPage = 60;
 
-  cardTable: boolean;
+  cardTable: boolean = false;
 
   searchSuscription: Subscription;
 
   constructor(
     private dataService: DataService,
-    private searchHelper: SearchHelperService,
+    private searchHelper: SearchHelperService
   ) {}
 
-  ngOnInit(){
-    console.log('recordatorio: set table header wirth u otra forma, mejorar header, hacer reminder de los dos estilos, search, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes');
-    this.cardTable = false;
-    this.pokemonCount = this.dataService.pokemonLimit;
+  async ngOnInit() {
+    console.log(
+      'recordatorio: set table header wirth u otra forma, mejorar header, hacer reminder de los dos estilos, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes'
+    );    
+    // en el futuro guardar los pokemon en local y si ya estan cargados los pillamos asi
+    await this.dataService.getPokemonList(50).then((pokemonList: Pokemon[]) => {      
+      this.pokemonList = pokemonList;
+      this.pokemonsToShow = this.sortPokemonList(this.pokemonList);
+      this.pokemonCount = this.pokemonList.length;
+    });
     
-    // en el futuro quiero guardar los pokemon en local y si ya estan cargados los pillamos asi
-    // if(this.dataService.pokemonList.length) {
-      //this.pokemonList = this.dataService.pokemonList;
-    // }
-    //else {
-      // de momento dejamos solo la suscripcion 
-      this.dataService.getPokemonList(50).subscribe( pokemonList => {
-        this.pokemonList = pokemonList;
-        this.pokemonsToShow = this.sortPokemonList(this.pokemonList);
-      });
-    // }
-      this.searchSuscription = this.searchHelper.getSearchValues().subscribe( searchValues => {        
-        this.pokemonsToShow = this.filterPokemon(searchValues)
+    this.searchSuscription = this.searchHelper
+      .getSearchValues()
+      .subscribe((searchValues) => {
+        this.pokemonsToShow = this.filterPokemon(searchValues);
       });
   }
-  
+
   ngOnDestroy() {
-    if(this.searchSuscription){
+    if (this.searchSuscription) {
       this.searchSuscription.unsubscribe();
     }
   }
@@ -57,14 +53,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   private filterPokemon(search: string) {
-    return this.pokemonList.filter( pokemon => pokemon.name.toLowerCase().includes(search.toLowerCase()));
+    return this.pokemonList.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(search.toLowerCase())
+    );
   }
 
   private sortPokemonList(pokemonList: Pokemon[]) {
     return pokemonList.sort((pokemon1, pokemon2) => {
       return pokemon1.id - pokemon2.id;
     });
-  } 
+  }
 }
 
 // // change pagination logic xdd

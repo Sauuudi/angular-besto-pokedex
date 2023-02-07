@@ -66,3 +66,5 @@ export enum TypeColorFilter {
   steel = 'invert(45%) sepia(5%) saturate(81%) hue-rotate(202deg) brightness(94%) contrast(86%)',
   fairy = 'invert(80%) sepia(14%) saturate(991%) hue-rotate(291deg) brightness(99%) contrast(106%)',
 }
+
+export const MAX_POKEMON_NUMBER: number = 721;
