@@ -4,7 +4,7 @@
 
 ## Pokedex made in Angular for fun
 
-https://besto-pokedex.herokuapp.com/home/
+link: Work in Progress V2
 
 Features:
 >* 2 pokedex styles, Cards mode and Table mode
