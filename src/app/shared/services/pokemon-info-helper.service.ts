@@ -8,6 +8,10 @@ export class PokemonInfoHelperService {
   stagedEvolutionChain: any = [[], [], []];
 
   transformEvolutionChain(chain: any[], currentStage = 0) {
+    // quitar esto, crear una instancia del service por cada Pokemon tal vez 
+    if(currentStage === 0) {
+      this.stagedEvolutionChain = [[], [], []];
+    }
     let linealEvolutionChain: LinealEvolutionChain;
 
     if (chain != null && chain[0].evolves_to.length > 0) {
