@@ -9,12 +9,13 @@ import {
   PokemonSpeciesDetails,
 } from '../models/pokemon.model';
 import { forkJoin, map, mergeMap } from 'rxjs';
+import { PokemonInfoHelperService } from './pokemon-info-helper.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private pokemonInfoHelper: PokemonInfoHelperService) {}
 
   async getPokemonList(numPokemonsToGet: number = MAX_POKEMON_NUMBER) {
     return await new Promise((resolve, reject) => {
@@ -102,8 +103,10 @@ export class DataService {
         this.http.get(pokemonSpecies.evolutionChainUrl)
       ),
       map((evolutionChainFromApi: any) => {
+        const evChain = this.pokemonInfoHelper.transformEvolutionChain([evolutionChainFromApi.chain]);        
         const pokemonChain: PokemonEvolutionChain = {
-          chain: evolutionChainFromApi,
+          linealEvolutionChain: evChain.linealEvolutionChain,
+          stagedEvolutionChain: evChain.stagedEvolutionChain,
         };        
         return pokemonChain;
       })

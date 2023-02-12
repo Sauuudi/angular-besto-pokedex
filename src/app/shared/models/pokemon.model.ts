@@ -14,14 +14,27 @@ export interface Pokemon {
 
 export interface PokemonSpeciesDetails {
   evolutionChainUrl: string;
+  mascosasluegonoolvidarsesinoestoquedafeoxdd?: any;
 }
 export interface PokemonEvolutionChain {
-  chain: any;
+  linealEvolutionChain: any;
+  stagedEvolutionChain: any;
 }
 
 export interface PokemonExtras {
   speciesDetails: PokemonSpeciesDetails;
   evolutionChain: PokemonEvolutionChain;
+}
+
+export interface PokemonEvolutionStage {
+  name: string;
+  id: string;
+  evolutionDetails: any;
+}
+
+export interface LinealEvolutionChain {
+  pokemon: PokemonEvolutionStage;
+  nextEvolutions: LinealEvolutionChain[] | 'LastEvolution';
 }
 
 export interface PokemonList {
