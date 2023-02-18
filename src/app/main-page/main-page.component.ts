@@ -26,7 +26,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     console.log(
-      'recordatorio: set table header wirth u otra forma, mejorar header, hide search en pag que no sean main, ordenar pokemon, refactor pokemon info codigo, hacer reminder de los dos estilos, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes'
+      'recordatorio: set table header wirth u otra forma, mejorar header y search, hide search en pag que no sean main, ordenar pokemon, refactor pokemon info codigo, remove cursor pointer ay añadir hovers hacer reminder de los dos estilos, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes, add mas cosas a pokemon species o si no quitar'
     );    
     // en el futuro guardar los pokemon en local y si ya estan cargados los pillamos asi
     await this.dataService.getPokemonList(50).then((pokemonList: Pokemon[]) => {      

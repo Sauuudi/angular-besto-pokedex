@@ -5,34 +5,35 @@
     [ngClass]="{'pika_boss--rotate': cardTable}"
     class="pika_boss"
     src="assets/pikachu.png"
+    alt=""
     />
   <p>CLICK ON ME!!</p>
   </div>
-  <table *ngIf="cardTable" class="pokemon-table">
+  <table *ngIf="cardTable" class="pokemon-table" aria-describedby="">
     <thead>
       <tr>
-        <th>ID</th>
-        <th></th>
-        <th>Pokemon</th>
-        <th>Tipos</th>
-        <th>PS</th>
-        <th>Att</th>
-        <th>Def</th>
-        <th>AtEsp</th>
-        <th>DefEsp</th>
-        <th>Vel</th>
+        <th id="">ID</th>
+        <th id=""></th>
+        <th id="">Pokemon</th>
+        <th id="">Tipos</th>
+        <th id="">PS</th>
+        <th id="">Att</th>
+        <th id="">Def</th>
+        <th id="">AtEsp</th>
+        <th id="">DefEsp</th>
+        <th id="">Vel</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let pokemon of pokemonsToShow">
-        <th>{{ pokemon.id }}</th>
+        <th id="">{{ pokemon.id }}</th>
         <td>
-          <a [routerLink]="'/home/pokemon/' + pokemon.id" >
+          <a [routerLink]="'/pokemon/' + pokemon.id">
             <img src="{{ pokemon.sprites.front_default }}" alt="{{pokemon.name}}-small-image" class="pokemon-table__image"/>
           </a>
         </td>
         <td>
-          <a [routerLink]="'/home/pokemon/' + pokemon.id" >
+          <a [routerLink]="'/pokemon/' + pokemon.id">
             <p class="pokemon-table__name">{{ pokemon.name }}</p>
           </a>
         </td>
@@ -40,7 +41,7 @@
           <div class="flex fd-r jc-c pokemon-table__types">
             <ng-container *ngFor="let type of pokemon.types">
               <img
-              src="/assets/types-icons/{{type.type.name}}.png"
+              src="/assets/types-icons/{{type.type.name}}.png" alt=""
               />
             </ng-container>
           </div>

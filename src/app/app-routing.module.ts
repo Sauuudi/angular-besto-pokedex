@@ -10,14 +10,16 @@ const routes: Routes = [
     component: MainPageComponent,
   },
   {
-    path: 'home/pokemon/:id',
+    path: 'pokemon/:id',
     component: PokemonInfoComponent,
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -33,9 +33,9 @@ export class PokeCardComponent implements OnInit {
   }
 
   setPokeballColor(filter: string): any {
-    var filterr = TypeColorFilter[filter] ?? 'white';
+    const colorFilter = TypeColorFilter[filter] ?? 'white';
     const style = {
-      filter: filterr,
+      filter: colorFilter,
     };
     return style;
   }
