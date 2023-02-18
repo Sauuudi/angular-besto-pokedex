@@ -12,39 +12,40 @@
       src="{{ mainImagePath }}"
       alt="pokemon-image"
     />
-    <p class="name-section">{{ pokemon?.name }}</p>
   </div>
   
-  <section class="information-section">
+  
+  <div class="name-section">{{ pokemon?.name }}</div>
     
-    <div class="basic-info">
-      
-        <div>
-          <p>ID</p>
-          <p>Height</p>
-          <p>Weight</p>
-          <p>Type</p>
-          <p>Abilities</p>
-        </div>
+  <div class="basic-info">
+    
+      <div>
+        <p>ID</p>
+        <p>Height</p>
+        <p>Weight</p>
+        <p>Type</p>
+        <p>Abilities</p>
+      </div>
 
+      <div>
+        <p>Nº{{ pokemon?.id }}</p>
+        <p>{{ pokemon?.height / 10 }}m</p>
+        <p>{{ pokemon?.weight / 10 }}kg</p>
         <div>
-          <p>Nº{{ pokemon?.id }}</p>
-          <p>{{ pokemon?.height / 10 }}m</p>
-          <p>{{ pokemon?.weight / 10 }}kg</p>
-          <div>
-            <ng-container *ngFor="let type of pokemon?.types">
-              <img src="/assets/types-icons/{{type.type.name}}.png" alt="pokemon_type"/>
-            </ng-container>
-          </div>
-          <div>
-            <span *ngFor="let ability of pokemon?.abilities">
-              {{ ability.ability.name }}
-            </span>
-          </div>
+          <ng-container *ngFor="let type of pokemon?.types">
+            <img src="/assets/types-icons/{{type.type.name}}.png" alt="pokemon_type"/>
+          </ng-container>
         </div>
-    </div>
+        <div>
+          <span *ngFor="let ability of pokemon?.abilities">
+            {{ ability.ability.name }}
+          </span>
+        </div>
+      </div>
+  </div>
 
-    <table class="stats-info">
+  <div class="stats-info">
+    <table>
       <tr>
         <th></th>
         <td class="bold-td">Stats Base</td>
@@ -54,8 +55,7 @@
         <td>{{ stat.base_stat }}</td>
       </tr> 
     </table>
-
-  </section>
+  </div>
 
   <div class="evolution-section" *ngIf="pokemon?.evolutionChain && (pokemon.name !== 'eevee')" >
     <div class="evolution-section__stage" *ngFor="let evolutionStage of pokemon.evolutionChain.stagedEvolutionChain; let i = index">

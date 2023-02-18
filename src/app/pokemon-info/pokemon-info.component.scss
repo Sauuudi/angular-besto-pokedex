@@ -1,125 +1,136 @@
+// buscar si se puede hacer sin media q y limpiar mas el codigo
+
 :host {
   font-size: 16px;
   color: rgb(40, 40, 40);
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: rgb(217, 217, 217);
+  display: grid;
   gap: 2rem;
-  margin: 0 6rem;
-  padding: 2rem 0;
-  background-color: rgb(180, 180, 180);
+  grid-template-columns: repeat(2, 1fr);
 
-  @media screen and (max-width: 700px) {
-    margin: 0 2rem;
+  margin: 0 16px;
+  padding: 32px 16px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
 .image-section {
+  grid-column: span 2;
   position: relative;
-  padding: 1rem;
-  max-width: 40%;
-
-  @media screen and (max-width: 700px) {
-    max-width: 80%;
-  }
+  display: flex;
+  justify-content: center;
   
   &__back-image {
     transform: rotate(-20deg);
     opacity: 0.3;
-    width: 100%;
   }
   &__pokemon-image {
     position: absolute;
-    width: 80%;
-    left: 24px;
-    top: 24px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 700px) {
+    img {
+      width: 50%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+     grid-column: span 1;
   }
 }
 
 .name-section {
+  grid-column: span 2;
   font-size: large;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 2rem;
+
+  @media screen and (max-width: 600px) {
+    grid-column: span 1;
+  }
 }
 
-.information-section {
-  width: 90%;
+.basic-info {
+  grid-column: span 1;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.5em;
   
-  .basic-info {
-    display: inline-flex;
-    gap: 1.5em;
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  div:nth-of-type(1) {
+    font-weight: bold;
+    text-align: end;
+  }
+  div:nth-of-type(2) {
+    text-align: center;
     
     > div {
-      display: flex;
-      flex-direction: column;
+      display: inline-flex;
       justify-content: center;
-      gap: 1rem;
-    }
-    
-    div:nth-of-type(1) {
-      font-weight: bold;
-      text-align: end;
-    }
-    div:nth-of-type(2) {
-      text-align: center;
-      
-      > div {
-        display: inline-flex;
-        justify-content: center;
-        gap: 0.4rem;
-    
-        img {
-          max-width: 5rem;
-        }
+      gap: 0.4rem;
   
-        span {
-          /* cambiar color dependeiendo del tipo mirar como hacerlo */
-          background-color: #c06d51;
-          color: white;
-          border-radius: 0.5rem;
-          padding: 0.3rem;
-          text-transform: uppercase;
-        }
+      img {
+        max-width: 5rem;
+      }
+
+      span {
+        background-color: #c06d51;
+        color: white;
+        border-radius: 0.5rem;
+        padding: 0.3rem;
+        text-transform: uppercase;
+        @media screen and (max-width: 600px) {
+          font-size: 0.5em;
+       }
       }
     }
   }
+}
 
-  .stats-info {
-    border-spacing: 0.5rem;
-    
-      .bold-td {
-      font-weight: bold;
-    } 
-
-    th {
-      text-align: right;
-      font-weight: bold;
-      text-transform: capitalize;
-    }
+.stats-info {
+  grid-column: span 1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   
-    td {
-      text-align: center;
-    }
-
+  table {
+    border-spacing: 0.5rem;
   }
+
+  .bold-td {
+    font-weight: bold;
+  } 
+
+  th {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
 }
 
 .evolution-section {
+  grid-column: span 2;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  background-color: rgba(255, 255, 255, 0.2); 
-  max-width: 90%;
-  padding: 1rem 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 16px;
 
   &__stage {
     display: inline-flex;
@@ -131,7 +142,7 @@
   &__stage-evolution {
     display: inline-flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2.5rem;
 
     div {
       display: inline-flex;
@@ -153,7 +164,7 @@
         font-size: small;
         inline-size: max-content;
         max-width: 130px;
-        right: -18px;
+        right: -10px;
         bottom: 50px;
       }
     }
@@ -165,6 +176,7 @@
     }
   }
 
+  // falta corregir esto para el caso de multiples evoluciones
   @media screen and (max-width: 700px) {
     flex-direction: column;
 
@@ -178,9 +190,10 @@
       :nth-child(odd) {
         flex-direction: row-reverse;
         > p {
-          font-weight: bold;
-          top: 0px;
-          left: 50px;
+          display: none;
+          // font-weight: bold;
+          // top: 0px;
+          // left: 50px;
         }
       }
     }
@@ -189,12 +202,13 @@
       transform: rotate(90deg)
     }
   }
+
+  @media screen and (max-width: 600px) {
+    grid-column: span 1;
+  }
 }
 
-.margin_evee {
-  margin-left: 100px;
-  margin-right: 100px;
-}
+
 
 .flechaUpLeft {
   transform: rotate(-135deg) !important;
