@@ -1,52 +1,59 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../shared/services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Pokemon, TypeColorFilter } from '../shared/models/pokemon.model';
+import { Subscription } from 'rxjs';
+import { PokemonInfoHelperService } from '../shared/services/pokemon-info-helper.service';
 @Component({
   selector: 'app-pokemon-info',
   templateUrl: './pokemon-info.component.html',
   styleUrls: ['./pokemon-info.component.scss'],
 })
-export class PokemonInfoComponent implements OnInit {
-  pokemon: any;
-  pokemonId: any;
-  mainImageLink: String = '';
+export class PokemonInfoComponent implements OnInit, OnDestroy {
+  pokemon: Pokemon;
+  mainImagePath = '';
 
-  evolutionChainInfo: any = [];
-  evolutionImagesLinks: any = [];
+  pokemonSubscription: Subscription;
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    public pokemonInfoHelper: PokemonInfoHelperService
   ) {}
 
-  async ngOnInit() {
-    this.pokemonId = this.route.snapshot.paramMap.get('id');
-    // unsuscribe on destroy
-    await this.dataService.getPokemon(this.pokemonId, true).subscribe((pokemon: Pokemon) => {
-        console.log(pokemon);
-        this.pokemon = pokemon;
-      });
-
-    //this.mainImageLink = 'assets/pokemon_images_compressed/' + this.pokemonId+ '.png';
-    this.mainImageLink =
-      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-      this.pokemonId +
-      '.png';
+  ngOnInit() {
+    const pokemonId = this.route.snapshot.paramMap.get('id');
+    this.loadData(pokemonId);
   }
 
-  getImage(id: any) {
-    return 'assets/pokemon_images_compressed/' + id + '.png';
-    // 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/' +
-    // id +
-    // '.png'
+  loadData(id) {
+    this.pokemonSubscription = this.dataService.getPokemon(id, 'extended').subscribe((pokemon: Pokemon) => {
+      console.log(pokemon);
+      this.pokemon = pokemon;
+      this.mainImagePath = this.pokemonInfoHelper.getImagePath(pokemon.id);
+    });
   }
 
-  setPokemonBackColor(filter: string): any {
-    var filterr = TypeColorFilter[filter] ?? 'white';
+  ngOnDestroy() {
+    if (this.pokemonSubscription) {
+      this.pokemonSubscription.unsubscribe();
+    }
+  }
 
+  onEvolution(id) {
+    // esto esta mal corregir
+    if(this.pokemonSubscription) {
+      this.pokemonSubscription.unsubscribe();
+    }
+    this.loadData(id);
+    window.scrollTo(0, 0)
+  }
+
+  setPokemonBackColor(filter: string) {
+    const colorFilter = TypeColorFilter[filter] ?? 'white';
     const style = {
-      filter: filterr,
+      filter: colorFilter,
     };
     return style;
   }

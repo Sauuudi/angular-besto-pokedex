@@ -47,7 +47,15 @@ export class PokemonInfoHelperService {
     };
   }
 
-  getEvolutionDetails(rawEvolutionDetails) {
+  getImagePath(id, large?: 'large') {
+    // tal vez cambiar de de donde sacar las imagenes
+    if (large) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    }
+    return `assets/defualt-compressed-images/${id}.png`;
+  }
+
+  private getEvolutionDetails(rawEvolutionDetails) {
     if(rawEvolutionDetails == null) {
       return [];
     }
@@ -59,10 +67,10 @@ export class PokemonInfoHelperService {
         case 'level-up':
             text = 'Level Up';
             if (evolutionDetails.min_level !== null) {
-              text += evolutionDetails.min_level;
+              text += ' ' + evolutionDetails.min_level;
             } 
             if (evolutionDetails.gender !== null) {
-              evolutionDetails.gender === 2 ? text += ' (Male)' : text += ' (Female)';
+              evolutionDetails.gender === 2 ? text += ' (Male) pokemon' : text += ' (Female) pokemon';
             }
             if (evolutionDetails.held_item !== null) {
               text += ' holding ' + evolutionDetails.held_item.name;
@@ -104,7 +112,7 @@ export class PokemonInfoHelperService {
                 case 'mt-coronet':
                   text += ' in a Special magnetic field or Use Thunder Stone or';
                   break;
-                case 'sinnoh-route-21':
+                case 'sinnoh-route-217':
                   text += ' in an Ice Rock or Use Ice Stone or';
                   break;
                 case 'eterna-forest':
@@ -113,8 +121,8 @@ export class PokemonInfoHelperService {
                 case 'mount-lanakila':
                   text += ' in Lanakila Mountain or';
                   break;
+                  
               }
-            text += ' in any other special location/rock type';
             }
             if (evolutionDetails.needs_overworld_rain !== false) {
               text += ' during Rain ';
@@ -135,16 +143,16 @@ export class PokemonInfoHelperService {
             text += ' with ' + evolutionDetails.trade_species.name;
           }
           if (evolutionDetails.gender !== null) {
-            evolutionDetails.gender === 2 ? text += ' with (Male) pokemon ' : text += 'with (Female) pokemon ';
+            evolutionDetails.gender === 2 ? text += ' with Male pokemon ' : text += 'with Female pokemon ';
           }
           break;
         case 'use-item':
-          text = 'Use ';
+          text = 'Use';
           if (evolutionDetails.item !== null) {
-            text += evolutionDetails.item.name;
+            text += ' ' + evolutionDetails.item.name;
           }
           if (evolutionDetails.gender !== null) {
-            evolutionDetails.gender === 2 ? text += ' with (Male) pokemon ' : text += 'with (Female) pokemon ';
+            evolutionDetails.gender === 2 ? text += ' with Male pokemon ' : text += ' with Female pokemon ';
           }
           break;
         case 'shed':
@@ -156,4 +164,6 @@ export class PokemonInfoHelperService {
 
     return evolutionDetailsToReturn;
   }
+
+
 }

@@ -1,83 +1,74 @@
-<div class="main_box">
-  <div class="pokemon-info">
-      <div class="pokemon-info__basic-info">
-      
-      <div class="basic-info-col">
-        <p>ID</p>
-        <p>Height</p>
-        <p>Weight</p>
-        <p>Type</p>
-        <p>Abilities</p>
-      </div>
-      <div class="basic-info-col">
-        <p>Nº{{ pokemon.id }}</p>
-        <p>{{ pokemon.height / 10 }}m</p>
-        <p>{{ pokemon.weight / 10 }}kg</p>
-        <div class="pokemon-info__types">
-          <img
-            src="/assets/types-icons/{{ pokemon.types[0].type.name }}.png"
-            alt=""
-          />
-          <img
-            *ngIf="pokemon.types.length == 2"
-            src="/assets/types-icons/{{ pokemon.types[1].type.name }}.png"
-            alt=""
-          />
-        </div>
-        <div class="pokemon-info__abilities">
-          <span *ngFor="let ability of pokemon.abilities" >
-            {{ability.ability.name}}
-          </span>
-        </div>
-      </div>
-    </div>
+<div class="wrapper">
 
-    <div class="pokemon-info__pokemon-image">
-      <img
-        class="pokemon-back-image"
-        src="assets/card_background.png"
-        [ngStyle]="setPokemonBackColor(pokemon.types[0].type.name)"
-        alt="pokemon-back-image"
-        />
-      <img
-        class="pokemon-image"
-        src="{{ mainImageLink }}"
-        alt="pokemon-image"
+  <div class="image-section">
+    <img
+      class="image-section__back-image"
+      src="assets/card_background.png"
+      [ngStyle]="setPokemonBackColor(pokemon?.types[0].type.name)"
+      alt="pokemon-back-image"
       />
-      <div>{{ pokemon.name }}</div>
+    <img
+      class="image-section__pokemon-image"
+      src="{{ mainImagePath }}"
+      alt="pokemon-image"
+    />
+    <p class="name-section">{{ pokemon?.name }}</p>
+  </div>
+  
+  <section class="information-section">
+    
+    <div class="basic-info">
+      
+        <div>
+          <p>ID</p>
+          <p>Height</p>
+          <p>Weight</p>
+          <p>Type</p>
+          <p>Abilities</p>
+        </div>
+
+        <div>
+          <p>Nº{{ pokemon?.id }}</p>
+          <p>{{ pokemon?.height / 10 }}m</p>
+          <p>{{ pokemon?.weight / 10 }}kg</p>
+          <div>
+            <ng-container *ngFor="let type of pokemon?.types">
+              <img src="/assets/types-icons/{{type.type.name}}.png" alt="pokemon_type"/>
+            </ng-container>
+          </div>
+          <div>
+            <span *ngFor="let ability of pokemon?.abilities">
+              {{ ability.ability.name }}
+            </span>
+          </div>
+        </div>
     </div>
 
-    <div class="info_row">
-      <table class="table table-borderless">
-        <tr>
-          <td></td>
-          <td><h3>Stats Base</h3></td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">HP</td>
-          <td>{{ pokemon.stats[0].base_stat }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Attack</td>
-          <td>{{ pokemon.stats[1].base_stat }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Defense</td>
-          <td>{{ pokemon.stats[2].base_stat }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Special Attack</td>
-          <td>{{ pokemon.stats[3].base_stat }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Special Defense</td>
-          <td>{{ pokemon.stats[4].base_stat }}</td>
-        </tr>
-        <tr>
-          <td class="text-right font-weight-bold">Speed</td>
-          <td>{{ pokemon.stats[5].base_stat }}</td>
-        </tr>
-      </table>
+    <table class="stats-info">
+      <tr>
+        <th></th>
+        <td class="bold-td">Stats Base</td>
+      </tr>
+      <tr *ngFor="let stat of pokemon?.stats">
+        <th>{{ stat.stat.name }}</th>
+        <td>{{ stat.base_stat }}</td>
+      </tr> 
+    </table>
+
+  </section>
+
+  <div class="evolution-section" *ngIf="pokemon?.evolutionChain && (pokemon.name !== 'eevee')" >
+    <div class="evolution-section__stage" *ngFor="let evolutionStage of pokemon.evolutionChain.stagedEvolutionChain; let i = index">
+      <div (click)="onEvolution(evolution.id)" class="evolution-section__stage-evolution" *ngFor="let evolution of evolutionStage">
+        <div>
+          <p *ngIf="i !== 0 ">{{evolution.evolutionDetails[0]}}</p>
+          <img *ngIf="i !== 0" class="rotate-arrow" src="assets/evolution-arrow.svg" alt="evolution_arrow">
+        </div>
+        <div>
+          <img src="{{this.pokemonInfoHelper.getImagePath(evolution.id)}}" alt="evolution_{{i}}">
+          <p>{{evolution.name}}</p>
+        </div>
+      </div>
     </div>
   </div>
 

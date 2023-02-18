@@ -31,7 +31,7 @@ export class DataService {
     });
   }
 
-  getPokemon(idOrName: string, extras = false) {
+  getPokemon(idOrName: string, extended?: 'extended') {
     return this.http
       .get<Pokemon>(`https://pokeapi.co/api/v2/pokemon/${idOrName}`)
       .pipe(
@@ -47,7 +47,7 @@ export class DataService {
             stats: pokemonFromApi.stats,
             sprites: pokemonFromApi.sprites,
           };
-          if (extras) {
+          if (extended) {
             this.getPokemonExtras(pokemonFromApi.id).subscribe(
               (extras: PokemonExtras) => {
                 newPokemon.speciesDetails = extras.speciesDetails;
