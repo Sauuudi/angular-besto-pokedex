@@ -52,7 +52,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="flex jc-se pokemon-list" *ngIf="!cardTable">
+  <div class="pokemon-list" *ngIf="!cardTable">
     <ng-container *ngFor="let pokemon of pokemonsToShow">
       <app-poke-card [pokemon]="pokemon"></app-poke-card>
     </ng-container>
