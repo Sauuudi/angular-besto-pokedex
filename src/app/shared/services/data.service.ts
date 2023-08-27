@@ -8,7 +8,7 @@ import {
   PokemonList,
   PokemonSpeciesDetails,
 } from '../models/pokemon.model';
-import { forkJoin, map, mergeMap } from 'rxjs';
+import { forkJoin, map, mergeMap, lastValueFrom } from 'rxjs';
 import { PokemonInfoHelperService } from './pokemon-info-helper.service';
 
 @Injectable({
@@ -17,18 +17,17 @@ import { PokemonInfoHelperService } from './pokemon-info-helper.service';
 export class DataService {
   constructor(private http: HttpClient, private pokemonInfoHelper: PokemonInfoHelperService) {}
 
-  async getPokemonList(numPokemonsToGet: number = MAX_POKEMON_NUMBER) {
-    return await new Promise((resolve, reject) => {
-      this.getRawAllPokemonData(numPokemonsToGet)
+  getPokemonList(numPokemonsToGet: number = MAX_POKEMON_NUMBER) {
+
+      return lastValueFrom(
+        this.getRawAllPokemonData(numPokemonsToGet)
         .pipe(
           map((pokemonsUrlsAndNames) => {
             return this.createPokemonList(pokemonsUrlsAndNames);
           })
         )
-        .subscribe((pokemonList: Pokemon[]) => {
-          resolve(pokemonList);
-        });
-    });
+      )
+    
   }
 
   getPokemon(idOrName: string, extended?: 'extended') {

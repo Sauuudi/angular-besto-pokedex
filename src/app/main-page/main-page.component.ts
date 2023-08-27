@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit, OnDestroy {
-  pokemonList: Pokemon[];
   pokemonsToShow: Pokemon[];
   pokemonCount: number;
   pokemonLimitPerPage = 60;
@@ -26,15 +25,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     console.log(
-      'recordatorio: set table header wirth u otra forma, mejorar header y search, hide search en pag que no sean main, ordenar pokemon, refactor pokemon info codigo, remove cursor pointer ay añadir hovers hacer reminder de los dos estilos, cambair paginacion, cambiar iconos de tipos a compoenente u otras imageenes, add mas cosas a pokemon species o si no quitar'
-    );    
+      'recordatorio: set table header wirth u otra forma, mejorar header y search, hide search en pag que no sean main, ordenar pokemon, reminder de los dos estilos, cambair paginacion, add mas cosas a pokemon species o si no quitar'
+    );
     // en el futuro guardar los pokemon en local y si ya estan cargados los pillamos asi
-    await this.dataService.getPokemonList(50).then((pokemonList: Pokemon[]) => {      
-      this.pokemonList = pokemonList;
-      this.pokemonsToShow = this.sortPokemonList(this.pokemonList);
-      this.pokemonCount = this.pokemonList.length;
+    await this.dataService.getPokemonList(50).then((pokemonList: Pokemon[]) => {
+      this.pokemonsToShow = pokemonList;
+      this.pokemonCount = pokemonList.length;
+      console.log(this.pokemonsToShow.length, this.pokemonCount, pokemonList.length);
+      this.sortPokemonList();
     });
-    
+
     this.searchSuscription = this.searchHelper
       .getSearchValues()
       .subscribe((searchValues) => {
@@ -53,13 +53,13 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   private filterPokemon(search: string) {
-    return this.pokemonList.filter((pokemon) =>
+    return this.pokemonsToShow.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(search.toLowerCase())
     );
   }
 
-  private sortPokemonList(pokemonList: Pokemon[]) {
-    return pokemonList.sort((pokemon1, pokemon2) => {
+  private sortPokemonList() {
+    this.pokemonsToShow.sort((pokemon1, pokemon2) => {
       return pokemon1.id - pokemon2.id;
     });
   }

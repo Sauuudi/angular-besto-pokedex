@@ -1,0 +1,550 @@
+<div *ngIf="evolutionChainInfo.length > 0">
+    <ng-container [ngSwitch]="exceptionalChainType">
+      <!-- EVOLUTION 111 -->
+
+      <ng-container *ngSwitchCase="''">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[0][3]) }}"
+              />
+              <span class="text-uppercase">{{ evolutionChainInfo[0][0] }}</span>
+              <span
+                *ngIf="evolutionChainInfo.length == 1"
+                style="font-size: 20px; padding-top: 5px"
+              >
+                This pokemon does not evolve</span
+              >
+            </div>
+            <div *ngIf="evolutionChainInfo.length > 1" class="flecha_box">
+              <span class="text-uppercase" style="font-size: 16px">
+                {{ evolutionChainInfo[1][2] }}
+              </span>
+              <img class="flecha" src="assets/flecha_derecha.png" />
+            </div>
+            <div
+              *ngIf="evolutionChainInfo.length > 1"
+              class="evo_img_box column_box"
+            >
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[1][3]) }}"
+              />
+              <span class="text-uppercase">{{ evolutionChainInfo[1][0] }}</span>
+            </div>
+            <div *ngIf="evolutionChainInfo.length > 2" class="flecha_box">
+              <span class="text-uppercase" style="font-size: 16px">
+                {{ evolutionChainInfo[2][2] }}
+              </span>
+              <img class="flecha" src="assets/flecha_derecha.png" />
+            </div>
+            <div
+              *ngIf="evolutionChainInfo.length > 2"
+              class="evo_img_box column_box"
+            >
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[2][3]) }}"
+              />
+              <span class="text-uppercase">{{ evolutionChainInfo[2][0] }}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- EVOLUTION 112 -->
+
+      <ng-container *ngSwitchCase="'112'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[0][3]) }}"
+              />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+            <div class="flecha_box">
+              <span class="text-uppercase" style="font-size: 16px">
+                {{ evolutionChainInfo[1][2] }}
+              </span>
+
+              <img class="flecha" src="assets/flecha_derecha.png" />
+            </div>
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[1][3]) }}"
+              />
+              <span class="text-uppercase">{{ evolutionChainInfo[1][0] }}</span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][0][2] }}</span
+                >
+
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][1][2] }}</span
+                >
+
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[2][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[2][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][1][0] }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- EVOLUTION 12 -->
+
+      <ng-container *ngSwitchCase="'12'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[0][3]) }}"
+              />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2] }}</span
+                >
+
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- EVOLUTION 122 -->
+
+      <ng-container *ngSwitchCase="'122'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[0][3]) }}"
+              />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}</span
+                >
+              </div>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][0][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[2][1][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[2][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[2][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[2][1][0] }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- EVOLUTION 13 -->
+
+      <ng-container *ngSwitchCase="'13'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box row_box">
+            <div class="evo_img_box column_box">
+              <img
+                class="evo_img"
+                src="{{ getImage(evolutionChainInfo[0][3]) }}"
+              />
+              <span class="text-uppercase">
+                {{ evolutionChainInfo[0][0] }}
+              </span>
+            </div>
+
+            <div class="column_box multiple_arrows_box">
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][0][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="flecha_box">
+                <span class="text-uppercase" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][2][2] }}</span
+                >
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+            </div>
+
+            <div class="column_box">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}</span
+                >
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img"
+                  src="{{ getImage(evolutionChainInfo[1][2][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][2][0] }}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- EVOLUTION 18, EVEE -->
+
+      <ng-container *ngSwitchCase="'18'">
+        <div class="evolution_main_box">
+          <h3>EVOLUTION CHAIN</h3>
+          <div class="evolution_images_box column_box">
+            <div class="row_box eveeRow1">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][0][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][1][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][1][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][2][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][2][0] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row_box eveeRow2">
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px; 
+                width: 80%;">
+                  {{ evolutionChainInfo[1][0][2] }}</span
+                >
+
+                <img
+                  class="flecha flechaUpLeft margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][1][2] }}</span
+                >
+
+                <img
+                  class="flecha flechaUp margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px; 
+                width: 80%;">
+                  {{ evolutionChainInfo[1][2][2] }}</span
+                >
+                <img
+                  class="flecha flechaUpRight margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+            </div>
+
+            <div class="row_box eveeRow3">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][3][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][3][0] }}
+                </span>
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px">
+                  {{ evolutionChainInfo[1][3][2] }}
+                </span>
+                <img
+                  class="flecha flechaLeft"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[0][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[0][0] }}
+                </span>
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px;">
+                  {{ evolutionChainInfo[1][4][2] }}
+                </span>
+
+                <img class="flecha" src="assets/flecha_derecha.png" />
+              </div>
+
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][4][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][4][0] }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row_box eveeRow4">
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px; 
+                width: 80%;">
+                  {{ evolutionChainInfo[1][5][2] }}
+                </span>
+
+                <img
+                  class="flecha flechaDownLeft margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px; 
+                width: 80%;">
+                  {{ evolutionChainInfo[1][6][2] }}
+                </span>
+
+                <img
+                  class="flecha flechaDown margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+
+              <div class="flecha_box">
+                <span class="" style="font-size: 16px; 
+                width: 80%;">
+                  {{ evolutionChainInfo[1][7][2] }}
+                </span>
+                <img
+                  class="flecha flechaDownRight margin_evee"
+                  src="assets/flecha_derecha.png"
+                />
+              </div>
+            </div>
+
+            <div class="row_box eveeRow5">
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][5][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][5][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][6][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][6][0] }}
+                </span>
+              </div>
+              <div class="evo_img_box column_box">
+                <img
+                  class="evo_img margin_evee"
+                  src="{{ getImage(evolutionChainInfo[1][7][3]) }}"
+                />
+                <span class="text-uppercase">
+                  {{ evolutionChainInfo[1][7][0] }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>

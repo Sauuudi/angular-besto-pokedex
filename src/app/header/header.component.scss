@@ -2,7 +2,7 @@
   background-color: var(--header-color);
   display: flex;
   align-items: center;
-  height: 2.8rem;
+  height: 3rem;
 }
 
 .title{
@@ -14,10 +14,3 @@
   font-size: 2rem;
   flex: 1;
 }
-
-.search-bar {
-  position: absolute;
-  right: 0;
-  margin-right: 2rem;
-}
-

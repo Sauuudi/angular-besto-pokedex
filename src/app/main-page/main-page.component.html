@@ -7,7 +7,9 @@
     src="assets/pikachu.png"
     alt=""
     />
-  <p>CLICK ON ME!!</p>
+    <p>CLICK ON ME!!</p>
+
+    <app-search-component [placeholder]="'search pokemons here'" class="search-bar"></app-search-component>
   </div>
   <table *ngIf="cardTable" class="pokemon-table" aria-describedby="">
     <thead>
